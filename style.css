@@ -25,37 +25,6 @@ h1 {
 h2 {
     margin-top: 30px;
 }
-
-/* BOTÕES */
-button{
-    width: 120px;
-    height: 50px;
-    font-size: 16px;
-    background: linear-gradient(340deg, red, black);
-    border-radius: 20px;
-    color: whitesmoke;
-    cursor: pointer;
-}
-
-/* BOTÕES FIXOS */
-#btn-claude {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-}
-
-#btn-vasco {
-    position: fixed;
-    bottom: 90px;
-    left: 20px;
-}
-
-#btn-cassino {
-    position: fixed;
-    bottom: 160px;
-    left: 20px;
-}
-
 /* TEXTO WIKI */
 .wiki {
     text-align: center;
@@ -78,6 +47,37 @@ button{
     transition: 0.3s;
 }
 
+/* Botao voltar cassino*/
+
+#voltarcass {
+    background: linear-gradient(340deg, red, black);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    /* sombra externa */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+
+    /* brilho interno leve */
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),
+                0 4px 8px rgba(0,0,0,0.4);
+
+    transition: 0.2s;
+}
+
+/* efeito hover */
+.btn-menu:hover {
+    transform: scale(1.05);
+}
+
+/* efeito ao clicar */
+.btn-menu:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
 /* ROLETA */
 .roleta-container {
     position: relative;
@@ -110,4 +110,46 @@ button{
 @keyframes girarBola {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 150px;
+    height: 50px; /* menor fechado */
+
+    background: linear-gradient(340deg,black,red);
+    border-radius: 10px;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Conteúdo escondido */
+.conteudo {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+/* Quando abrir */
+.menu.ativo {
+    height: auto; /* cresce conforme conteúdo */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+/* Mostrar conteúdo */
+.menu.ativo .conteudo {
+    display: block;
 }

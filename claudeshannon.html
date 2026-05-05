@@ -7,10 +7,6 @@
 
 <body>
 
-<button id="btn-claude" onclick="irClaude()">Claude</button>
-<button id="btn-vasco" onclick="trocarAba()">Vasco</button>
-<button id="btn-cassino" onclick="trocarAbaCassino()">Cassino</button>
-
 <!-- ABA CLAUDE -->
 <div id="claude">
 
@@ -68,13 +64,26 @@ Bem-vindo ao cassino do Claude Shannon.
 
     <br><br>
 
-    <button onclick="voltarCassino()">⬅ Voltar</button>
+    <button id="voltarcass" onclick="voltarCassino()">⬅ Voltar</button>
 
 </div>
 
 </div>
 
-<script src="botoes.js"></script>
+<div class="menu" id="menu">
+
+    <span>Menu</span>
+
+    <div class="conteudo">
+        <p onclick="irClaude()">Claude</p>
+        <p onclick="trocarAba()">Vasco</p>
+        <p onclick="trocarAbaCassino()">Cassino</p>
+    </div>
+
+</div>
+
+
+<script src="botoes.js" defer></script>
 
 </body>
 </html>

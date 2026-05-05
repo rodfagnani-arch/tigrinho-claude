@@ -29,3 +29,28 @@ function voltarCassino() {
   document.getElementById("menuCassino").style.display = "block";
   document.getElementById("roletaArea").style.display = "none";
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const menu = document.getElementById("menu");
+
+    // abrir/fechar menu
+    menu.addEventListener("click", function(e) {
+        e.stopPropagation();
+        menu.classList.toggle("ativo");
+    });
+
+    // clicar fora fecha
+    document.addEventListener("click", function() {
+        menu.classList.remove("ativo");
+    });
+
+    // clicar nas opções fecha sem bugar
+    document.querySelectorAll(".conteudo p").forEach(item => {
+        item.addEventListener("click", function(e) {
+            e.stopPropagation(); // 🔥 ESSENCIAL
+            menu.classList.remove("ativo");
+        });
+    });
+
+});
