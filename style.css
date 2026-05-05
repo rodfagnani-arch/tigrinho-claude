@@ -30,9 +30,9 @@ h2 {
 }
 
 button{
-    width: 100px;
-    height: 50px;
-    background: linear-gradient(135deg, red, black);
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(340deg, red, black);
     border-radius: 20px;
     color: whitesmoke;
 
@@ -47,13 +47,13 @@ button{
 
 #btn-vasco {
     position: fixed;
-    bottom: 75px;
+    bottom: 180px;
     left: 20px;
 }
 
 #btn-cassino {
     position: fixed;
-    bottom: 130px;
+    bottom: 340px;
     left: 20px;
 }
 
