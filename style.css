@@ -2,6 +2,9 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+
+    /* empurra o site inteiro pra não bater nos botões */
+    padding-left: 150px;
 }
 
 p {
@@ -22,52 +25,89 @@ h1 {
 h2 {
     margin-top: 30px;
 }
-.vasco {
 
-    margin: 40px auto;
-    border-radius: 15px;
-
-}
-
+/* BOTÕES */
 button{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
     background: linear-gradient(340deg, red, black);
     border-radius: 20px;
     color: whitesmoke;
-
+    cursor: pointer;
 }
 
+/* BOTÕES FIXOS */
 #btn-claude {
     position: fixed;
     bottom: 20px;
     left: 20px;
-
 }
 
 #btn-vasco {
     position: fixed;
-    bottom: 180px;
+    bottom: 90px;
     left: 20px;
 }
 
 #btn-cassino {
     position: fixed;
-    bottom: 340px;
+    bottom: 160px;
     left: 20px;
 }
 
-.bigbass {
-    border-radius: 30px;
-}
-
+/* TEXTO WIKI */
 .wiki {
     text-align: center;
     font-size: 30px;
 }
 
 .wiki a {
-    display: inline;
     color: black;
+}
 
+/* IMAGEM DO JOGO */
+.bigbass {
+    display: block;
+    margin: 20px auto;
+    border-radius: 30px;
+}
+
+.bigbass:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+/* ROLETA */
+.roleta-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 40px auto;
+}
+
+/* RODA */
+#roleta {
+    width: 100%;
+    display: block;
+    transition: transform 3s ease-out;
+}
+
+/* BOLINHA */
+.bola {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    transform-origin: -120px center;
+    animation: girarBola 2s linear infinite;
+}
+
+/* ANIMAÇÃO */
+@keyframes girarBola {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

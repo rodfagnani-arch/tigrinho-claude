@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Bass Splash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0f0b; display: flex; justify-content: center; }
+
+    .machine-wrap { display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; font-family: 'Nunito', sans-serif; }
+    .machine-title { font-family: 'Bangers', cursive; font-size: 38px; letter-spacing: 3px; color: #1a6b3c; text-shadow: 2px 2px 0 #a8e6bf, 4px 4px 0 rgba(0,0,0,0.12); margin-bottom: 4px; }
+    .subtitle { font-size: 13px; font-weight: 700; color: #2e8b57; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; opacity: 0.75; }
+
+    .machine-body { background: linear-gradient(160deg, #1a4a2e 0%, #0d2b1a 100%); border-radius: 20px; padding: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08); width: 400px; }
+    .machine-inner { background: #0f1f14; border-radius: 15px; padding: 16px; }
+
+    .water-bar { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #1e90ff, #00bfff, #87ceeb, #1e90ff); background-size: 200% 100%; animation: waterFlow 2s linear infinite; margin-bottom: 14px; opacity: 0.7; }
+    @keyframes waterFlow { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+
+    .reels-container { display: flex; gap: 8px; background: #060e09; border-radius: 12px; padding: 8px; border: 2px solid #1e4d2b; position: relative; overflow: hidden; }
+    .reel-wrapper { flex: 1; height: 200px; overflow: hidden; border-radius: 8px; background: #0a1a0e; border: 1px solid #1e4d2b; position: relative; }
+    .reel-shimmer { position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, rgba(6,14,9,0.9) 0%, transparent 100%); z-index: 3; pointer-events: none; }
+    .reel-shimmer-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(6,14,9,0.9) 0%, transparent 100%); z-index: 3; pointer-events: none; }
+
+    .win-line { position: absolute; top: 50%; left: -6px; right: -6px; height: 68px; transform: translateY(-50%); border: 2px solid rgba(255,215,0,0.5); border-radius: 4px; z-index: 4; pointer-events: none; transition: border-color 0.3s; }
+    .win-line.active { border-color: rgba(255,215,0,0.9); box-shadow: 0 0 12px rgba(255,215,0,0.4); }
+
+    .reel { display: flex; flex-direction: column; transition: transform 0.08s linear; }
+    .symbol { height: 66px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0; user-select: none; }
+
+    .water-bar-bottom { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #87ceeb, #1e90ff, #00bfff, #87ceeb); background-size: 200% 100%; animation: waterFlow 1.5s linear infinite reverse; margin-top: 14px; opacity: 0.7; }
+
+    /* ==========================================
+       PAINEL — Saldo / Aposta / Último Ganho
+       ========================================== */
+    .balance-row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 8px; }
+    .balance-box { flex: 1; background: #0a1a0e; border: 1px solid #1e4d2b; border-radius: 8px; padding: 8px 10px; text-align: center; }
+    .balance-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #3a8a5a; text-transform: uppercase; }
+    .balance-value { font-size: 18px; font-weight: 900; color: #ffd700; font-family: 'Bangers', cursive; letter-spacing: 1px; }
+    .bet-btn { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #2e8b57; background: #0f2a17; color: #5dba7d; font-size: 14px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
+    .bet-btn:hover { background: #1a4a2e; }
+
+    .spin-btn { width: 100%; margin-top: 12px; padding: 14px; border-radius: 12px; border: none; background: linear-gradient(135deg, #1e8b4f 0%, #0d5c2e 100%); color: #fff; font-family: 'Bangers', cursive; font-size: 26px; letter-spacing: 3px; cursor: pointer; transition: transform 0.1s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.1) inset; position: relative; overflow: hidden; }
+    .spin-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+    .spin-btn:active { transform: scale(0.98); }
+    .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .spin-btn .ripple { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%); animation: shimmer 2s infinite; }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+    .result-msg { text-align: center; font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px; min-height: 30px; margin-top: 10px; transition: all 0.3s; }
+    .msg-win { color: #ffd700; text-shadow: 0 0 8px rgba(255,215,0,0.5); }
+    .msg-lose { color: #6a8a72; }
+    .msg-jackpot { color: #ff6b6b; animation: jackpotPulse 0.5s infinite alternate; }
+    @keyframes jackpotPulse { from { transform: scale(1); color: #ffd700; } to { transform: scale(1.05); color: #ff6b6b; } }
+
+    .fish-deco { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px; font-size: 22px; opacity: 0.5; animation: fishSwim 4s ease-in-out infinite; }
+    @keyframes fishSwim { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+  </style>
+</head>
+<body>
+
+<div class="machine-wrap">
+  <div class="fish-deco">🌿 🐟 🌿 🐠 🌿</div>
+
+  <!-- ==========================================
+       TÍTULO — edite o nome aqui
+       ========================================== -->
+  <div class="machine-title">BIG BASS SPLASH</div>
+  <div class="subtitle">🎣 Pesca de Fortuna 🎣</div>
+
+  <div class="machine-body">
+    <div class="machine-inner">
+      <div class="water-bar"></div>
+
+      <!-- ROLOS -->
+      <div class="reels-container" id="reelsContainer">
+        <div class="win-line" id="winLine"></div>
+        <div class="reel-wrapper" id="reel0">
+          <div class="reel-shimmer"></div>
+          <div class="reel-shimmer-bottom"></div>
+          <div class="reel" id="reelTrack0"></div>
+        </div>
+        <div class="reel-wrapper" id="reel1">
+          <div class="reel-shimmer"></div>
+          <div class="reel-shimmer-bottom"></div>
+          <div class="reel" id="reelTrack1"></div>
+        </div>
+        <div class="reel-wrapper" id="reel2">
+          <div class="reel-shimmer"></div>
+          <div class="reel-shimmer-bottom"></div>
+          <div class="reel" id="reelTrack2"></div>
+        </div>
+      </div>
+
+      <div class="water-bar-bottom"></div>
+
+      <!-- ==========================================
+           PAINEL DE INFORMAÇÕES — edite os labels aqui
+           ========================================== -->
+      <div class="balance-row">
+
+        <!-- BLOCO 1: SALDO -->
+        <div class="balance-box">
+          <div class="balance-label">Saldo</div>             <!-- ← troque o label aqui -->
+          <div class="balance-value" id="balanceVal">💰 500</div>
+        </div>
+
+        <!-- BLOCO 2: APOSTA -->
+        <div class="balance-box">
+          <div class="balance-label">Aposta</div>            <!-- ← troque o label aqui -->
+          <div style="display:flex;align-items:center;gap:4px;justify-content:center;margin-top:2px;">
+            <button class="bet-btn" id="betDown">−</button>
+            <div style="font-size:18px;font-weight:900;color:#ffd700;font-family:'Bangers',cursive;letter-spacing:1px;" id="betVal">10</div>
+            <button class="bet-btn" id="betUp">+</button>
+          </div>
+        </div>
+
+        <!-- BLOCO 3: ÚLTIMO GANHO -->
+        <div class="balance-box">
+          <div class="balance-label">Último Ganho</div>      <!-- ← troque o label aqui -->
+          <div class="balance-value" id="lastWinVal">—</div>
+        </div>
+
+      </div>
+      <!-- FIM DO PAINEL -->
+
+      <button class="spin-btn" id="spinBtn">
+        <span class="ripple"></span>
+        🎣 GIRAR 🎣
+      </button>
+
+      <div class="result-msg" id="resultMsg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// SÍMBOLOS — adicione, remova ou troque emojis
+// ==========================================
+const SYMBOLS = ['🐟','🐠','🦈','🐡','🦞','🐚','💎','🌿','🪸','🎣'];
+
+// Peso de cada símbolo (maior = aparece mais)
+// Deve ter o mesmo número de itens que SYMBOLS
+const WEIGHTS =  [30,  25,  8,   20,  12,  18,  4,   22,  15,  10];
+
+// Pagamento por símbolo: [ignorar, ignorar, multiplicador par, multiplicador trio]
+const PAYOUTS = {
+  '🐟': [0, 0, 5,   15],
+  '🐠': [0, 0, 8,   20],
+  '🦈': [0, 0, 40, 120],
+  '🐡': [0, 0, 6,   18],
+  '🦞': [0, 0, 12,  35],
+  '🐚': [0, 0, 7,   22],
+  '💎': [0, 0, 100,500],
+  '🌿': [0, 0, 4,   12],
+  '🪸': [0, 0, 10,  28],
+  '🎣': [0, 0, 15,  50],
+};
+
+// ==========================================
+// SALDO E APOSTA — valores iniciais
+// ==========================================
+let balance = 500;   // saldo inicial do jogador
+let bet     = 10;    // aposta inicial
+const BET_MIN  = 10; // aposta mínima
+const BET_MAX  = 100;// aposta máxima
+const BET_STEP = 10; // quanto sobe/desce cada clique
+
+// ==========================================
+// NÃO MEXA ABAIXO — lógica do jogo
+// ==========================================
+let spinning = false;
+
+function weightedRandom() {
+  const total = WEIGHTS.reduce((a,b) => a+b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < SYMBOLS.length; i++) {
+    r -= WEIGHTS[i];
+    if (r <= 0) return SYMBOLS[i];
+  }
+  return SYMBOLS[0];
+}
+
+function buildReel(id, initial) {
+  const track = document.getElementById('reelTrack' + id);
+  track.innerHTML = '';
+  initial.forEach(sym => {
+    const div = document.createElement('div');
+    div.className = 'symbol';
+    div.textContent = sym;
+    track.appendChild(div);
+  });
+}
+
+function initReels() {
+  for (let i = 0; i < 3; i++) {
+    const col = [];
+    for (let j = 0; j < 5; j++) col.push(weightedRandom());
+    buildReel(i, col);
+    document.getElementById('reelTrack' + i).style.transform = 'translateY(-66px)';
+  }
+}
+
+initReels();
+updateUI();
+
+function updateUI() {
+  document.getElementById('balanceVal').textContent = '💰 ' + balance;
+  document.getElementById('betVal').textContent = bet;
+}
+
+document.getElementById('betUp').onclick = () => {
+  if (!spinning) { bet = Math.min(bet + BET_STEP, BET_MAX); updateUI(); }
+};
+document.getElementById('betDown').onclick = () => {
+  if (!spinning) { bet = Math.max(bet - BET_STEP, BET_MIN); updateUI(); }
+};
+
+document.getElementById('spinBtn').onclick = doSpin;
+
+function doSpin() {
+  if (spinning || balance < bet) return;
+  spinning = true;
+  balance -= bet;
+  updateUI();
+
+  document.getElementById('resultMsg').textContent = '';
+  document.getElementById('resultMsg').className = 'result-msg';
+  document.getElementById('winLine').className = 'win-line';
+  document.getElementById('spinBtn').disabled = true;
+  document.getElementById('lastWinVal').textContent = '—';
+
+  const results = [weightedRandom(), weightedRandom(), weightedRandom()];
+  const SYMBOL_H = 66;
+  let done = 0;
+
+  for (let i = 0; i < 3; i++) {
+    const track = document.getElementById('reelTrack' + i);
+    const delay = i * 160;
+    const cascade = [];
+    const count = 18 + Math.floor(Math.random() * 6) + i * 4;
+    for (let k = 0; k < count - 3; k++) cascade.push(weightedRandom());
+    cascade.push(weightedRandom());
+    cascade.push(results[i]);
+    cascade.push(weightedRandom());
+
+    track.innerHTML = '';
+    cascade.forEach(sym => {
+      const div = document.createElement('div');
+      div.className = 'symbol';
+      div.textContent = sym;
+      track.appendChild(div);
+    });
+
+    const targetIndex = cascade.length - 2;
+    const targetY = -targetIndex * SYMBOL_H;
+    track.style.transition = 'none';
+    track.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+      const duration = 900 + i * 200 + Math.random() * 100;
+      track.style.transition = `transform ${duration}ms cubic-bezier(0.17, 0.67, 0.35, 1.0)`;
+      track.style.transform = `translateY(${targetY}px)`;
+      setTimeout(() => { done++; if (done === 3) finish(results); }, duration + 100);
+    }, delay + 60);
+  }
+}
+
+function finish(results) {
+  const msg     = document.getElementById('resultMsg');
+  const lastWin = document.getElementById('lastWinVal');
+  const winLine = document.getElementById('winLine');
+
+  const match3 = results[0] === results[1] && results[1] === results[2];
+  const match2 = results[0] === results[1] || results[1] === results[2] || results[0] === results[2];
+  const matchCount = match3 ? 3 : match2 ? 2 : 0;
+  const matchSym = match3 ? results[0]
+    : results[0] === results[1] ? results[0]
+    : results[1] === results[2] ? results[1]
+    : results[0] === results[2] ? results[0] : null;
+
+  let win = 0;
+  if (matchSym && matchCount >= 2) {
+    win = Math.round(bet * PAYOUTS[matchSym][matchCount]);
+  }
+
+  balance += win;
+  updateUI();
+
+  if (win > 0) {
+    winLine.className = 'win-line active';
+    lastWin.textContent = '+' + win;
+    if (win >= bet * 50) {
+      msg.textContent = '🎉 SUPER PESCA! +' + win + ' 🎉';
+      msg.className = 'result-msg msg-jackpot';
+    } else if (win >= bet * 10) {
+      msg.textContent = '🐟 PEIXÃO! VOCÊ GANHOU +' + win + '!';
+      msg.className = 'result-msg msg-win';
+    } else {
+      msg.textContent = '✨ Peixinho! +' + win;
+      msg.className = 'result-msg msg-win';
+    }
+  } else {
+    msg.textContent = balance < bet ? '🌊 Sem saldo! Recarregue.' : '🌿 Nada dessa vez... tente de novo!';
+    msg.className = 'result-msg msg-lose';
+    if (balance < 10) { setTimeout(() => { balance = 500; updateUI(); }, 1800); }
+  }
+
+  spinning = false;
+  document.getElementById('spinBtn').disabled = false;
+}
+</script>
+
+</body>
+</html>

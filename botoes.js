@@ -1,37 +1,31 @@
 let abaAtual = "claude";
 
 function trocarAba() {
-    const claude = document.getElementById("claude");
-    const vasco = document.getElementById("vasco");
-    const cassino = document.getElementById("cassino");
-
-    claude.style.display = "none";
-    vasco.style.display = "block";
-    cassino.style.display = "none";
-
-    abaAtual = "vasco";
+    document.getElementById("claude").style.display = "none";
+    document.getElementById("vasco").style.display = "block";
+    document.getElementById("cassino").style.display = "none";
 }
 
 function trocarAbaCassino() {
-    const claude = document.getElementById("claude");
-    const vasco = document.getElementById("vasco");
-    const cassino = document.getElementById("cassino");
-
-    claude.style.display = "none";
-    vasco.style.display = "none";
-    cassino.style.display = "block";
-
-    abaAtual = "cassino";
+    document.getElementById("claude").style.display = "none";
+    document.getElementById("vasco").style.display = "none";
+    document.getElementById("cassino").style.display = "block";
 }
 
 function irClaude() {
-    const claude = document.getElementById("claude");
-    const vasco = document.getElementById("vasco");
-    const cassino = document.getElementById("cassino");
-
-    claude.style.display = "block";
-    vasco.style.display = "none";
-    cassino.style.display = "none";
+    document.getElementById("claude").style.display = "block";
+    document.getElementById("vasco").style.display = "none";
+    document.getElementById("cassino").style.display = "none";
 }
 
-1
+// abrir jogo
+function abrirRoleta() {
+  document.getElementById("menuCassino").style.display = "none";
+  document.getElementById("roletaArea").style.display = "block";
+}
+
+// voltar pro menu
+function voltarCassino() {
+  document.getElementById("menuCassino").style.display = "block";
+  document.getElementById("roletaArea").style.display = "none";
+}
