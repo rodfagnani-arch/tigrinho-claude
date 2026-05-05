@@ -1,0 +1,62 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+p {
+    font-size: 25px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+img {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #222;
+}
+
+h2 {
+    margin-top: 30px;
+}
+.vasco {
+
+    margin: 40px auto;
+    border-radius: 15px;
+
+}
+
+button{
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(135deg, red, black);
+    border-radius: 20px;
+    color: whitesmoke;
+
+}
+
+#btn-claude {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+}
+
+#btn-vasco {
+    position: fixed;
+    bottom: 75px;
+    left: 20px;
+}
+
+#btn-cassino {
+    position: fixed;
+    bottom: 130px;
+    left: 20px;
+}
+
+.bigbass {
+    border-radius: 30px;
+}
