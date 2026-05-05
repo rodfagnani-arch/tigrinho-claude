@@ -7,6 +7,19 @@
 
 <body>
 
+<!-- MENU LATERAL (AGORA FORA DAS ABAS) -->
+<div class="menu" id="menu">
+
+    <span>Menu</span>
+
+    <div class="conteudo">
+        <p onclick="irClaude()">Claude</p>
+        <p onclick="trocarAba()">Vasco</p>
+        <p onclick="trocarAbaCassino()">Cassino</p>
+    </div>
+
+</div>
+
 <!-- ABA CLAUDE -->
 <div id="claude">
 
@@ -46,42 +59,40 @@ Vasco é a Calopsita macia do meu amigo.
 
 <h2>BET 777 Shannon 🎰</h2>
 
-<p>
-Bem-vindo ao cassino do Claude Shannon.
-</p>
+<p>Bem-vindo ao cassino do Claude Shannon.</p>
 
-<!-- MENU (imagem clicável) -->
+<!-- MENU DO JOGO -->
 <div id="menuCassino">
-    <img class="bigbass" src="bigbass.jpg" width="600" onclick="abrirRoleta()" style="cursor:pointer;">
+    <img class="bigbass" src="bigbass.jpg" width="500" onclick="abrirRoleta()" style="cursor:pointer;">
 </div>
 
 <!-- ÁREA DO JOGO -->
 <div id="roletaArea" style="display:none;">
 
-    <h2>BIG BASS 🎣</h2>
+    <div class="game-wrapper">
 
-    <iframe src="slot.html" width="450" height="650" style="border:none; border-radius:15px;"></iframe>
+        <div class="game-card">
 
-    <br><br>
+            <div class="game-frame">
+                <iframe src="slot.html"></iframe>
+            </div>
 
-    <button id="voltarcass" onclick="voltarCassino()">⬅ Voltar</button>
+            <div class="game-footer">
+                <div>
+                    <div class="game-title">Big Bass Splash</div>
+                    <div class="game-provider">Cassino Shannon</div>
+                </div>
 
-</div>
+                <button id="voltarcass" onclick="voltarCassino()">⬅ Voltar</button>
+            </div>
 
-</div>
+        </div>
 
-<div class="menu" id="menu">
-
-    <span>Menu</span>
-
-    <div class="conteudo">
-        <p onclick="irClaude()">Claude</p>
-        <p onclick="trocarAba()">Vasco</p>
-        <p onclick="trocarAbaCassino()">Cassino</p>
     </div>
 
 </div>
 
+</div>
 
 <script src="botoes.js" defer></script>
 

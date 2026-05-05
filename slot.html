@@ -164,11 +164,18 @@ const PAYOUTS = {
 // ==========================================
 // SALDO E APOSTA — valores iniciais
 // ==========================================
-let balance = 500;   // saldo inicial do jogador
+let balance = localStorage.getItem("saldoCassino")
+  ? parseInt(localStorage.getItem("saldoCassino"))
+  : 100000;   // saldo inicial do jogador
+  function salvarSaldo() {
+  localStorage.setItem("saldoCassino", balance);
+}
+
 let bet     = 10;    // aposta inicial
 const BET_MIN  = 10; // aposta mínima
 const BET_MAX  = 100;// aposta máxima
 const BET_STEP = 10; // quanto sobe/desce cada clique
+
 
 // ==========================================
 // NÃO MEXA ABAIXO — lógica do jogo
@@ -211,6 +218,8 @@ updateUI();
 function updateUI() {
   document.getElementById('balanceVal').textContent = '💰 ' + balance;
   document.getElementById('betVal').textContent = bet;
+
+  salvarSaldo(); // 🔥 salva automaticamente  
 }
 
 document.getElementById('betUp').onclick = () => {
