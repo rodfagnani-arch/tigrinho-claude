@@ -1,116 +1,18 @@
+/* =========================
+   BASE DO SITE
+   ========================= */
+
 body {
-    text-align: center;
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
 
-    /* empurra o site inteiro pra não bater nos botões */
-    padding-left: 150px;
-}
-
-p {
-    font-size: 25px;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-img {
-    margin-top: 20px;
-    border-radius: 10px;
-}
-
-h1 {
-    color: #222;
-}
-
-h2 {
-    margin-top: 30px;
-}
-/* TEXTO WIKI */
-.wiki {
-    text-align: center;
-    font-size: 30px;
-}
-
-.wiki a {
-    color: black;
-}
-
-/* IMAGEM DO JOGO */
-.bigbass {
-    display: block;
-    margin: 20px auto;
-    border-radius: 30px;
-}
-
-.bigbass:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
-}
-
-/* Botao voltar cassino*/
-
-#voltarcass {
-    background: linear-gradient(340deg, red, black);
+    background: radial-gradient(circle at top, #1c1c1c, #050505 70%);
     color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 18px;
-    border-radius: 12px;
-    cursor: pointer;
-
-    /* sombra externa */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-
-    /* brilho interno leve */
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),
-                0 4px 8px rgba(0,0,0,0.4);
-
-    transition: 0.2s;
 }
 
-/* efeito hover */
-.btn-menu:hover {
-    transform: scale(1.05);
-}
-
-/* efeito ao clicar */
-.btn-menu:active {
-    transform: scale(0.95);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
-}
-/* ROLETA */
-.roleta-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 40px auto;
-}
-
-/* RODA */
-#roleta {
-    width: 100%;
-    display: block;
-    transition: transform 3s ease-out;
-}
-
-/* BOLINHA */
-.bola {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    transform-origin: -120px center;
-    animation: girarBola 2s linear infinite;
-}
-
-/* ANIMAÇÃO */
-@keyframes girarBola {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+/* =========================
+   MENU
+   ========================= */
 
 .menu {
     position: fixed;
@@ -118,9 +20,9 @@ h2 {
     left: 20px;
 
     width: 150px;
-    height: 50px; /* menor fechado */
+    height: 50px;
 
-    background: linear-gradient(340deg,black,red);
+    background: linear-gradient(340deg, black, red);
     border-radius: 10px;
     color: white;
 
@@ -131,25 +33,182 @@ h2 {
     cursor: pointer;
     overflow: hidden;
     transition: 0.3s;
+
+    z-index: 9999;
 }
 
-/* Conteúdo escondido */
+.menu span {
+    font-weight: bold;
+}
+
 .conteudo {
     display: none;
     margin-top: 10px;
-    text-align: left;
     width: 100%;
 }
 
-/* Quando abrir */
 .menu.ativo {
-    height: auto; /* cresce conforme conteúdo */
+    height: auto;
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
 }
 
-/* Mostrar conteúdo */
 .menu.ativo .conteudo {
     display: block;
+}
+
+.conteudo p {
+    margin: 5px 0;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.conteudo p:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* =========================
+   CONTEÚDO (PADRÃO SITE)
+   ========================= */
+
+#claude, #vasco, #cassino {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* CARDS PRINCIPAIS */
+#claude, #vasco {
+    max-width: 850px;
+    margin: 80px auto;
+
+    background: #121212;
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.8),
+        0 0 20px rgba(255,0,0,0.1);
+
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================
+   TEXTOS
+   ========================= */
+
+h1, h2 {
+    color: #fff;
+}
+
+p {
+    font-size: 20px;
+    max-width: 650px;
+    margin: 20px auto;
+    color: #ccc;
+}
+
+/* =========================
+   IMAGENS (PADRÃO BONITO)
+   ========================= */
+
+img {
+    display: block;
+    margin: 25px auto;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 15px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+img:hover {
+    transform: scale(1.04);
+}
+
+/* =========================
+   LINK WIKI
+   ========================= */
+
+.wiki {
+    font-size: 22px;
+}
+
+.wiki a {
+    color: #ff3c3c;
+    text-decoration: none;
+}
+
+.wiki a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   CASSINO (já tava bom, só padronizei)
+   ========================= */
+
+#cassino {
+    min-height: 100vh;
+}
+
+/* IMAGEM DO JOGO */
+.bigbass {
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+/* CENTRALIZA JOGO */
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+/* CARD DO JOGO */
+.game-card {
+    width: 460px;
+    background: #121212;
+    border-radius: 16px;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.8),
+        0 0 10px rgba(255,0,0,0.1);
+}
+
+/* SLOT */
+.game-frame iframe {
+    width: 100%;
+    height: 650px;
+    border: none;
+}
+
+/* FOOTER */
+.game-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px;
+    background: #0d0d0d;
+}
+
+/* BOTÃO */
+#voltarcass {
+    background: linear-gradient(340deg, black, red);
+    color: white;
+    border: none;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+#voltarcass:hover {
+    opacity: 0.8;
 }
