@@ -70,7 +70,7 @@ body {
 }
 
 /* =========================
-   CONTEÚDO (PADRÃO SITE)
+   CONTEÚDO
    ========================= */
 
 #claude, #vasco, #cassino {
@@ -79,27 +79,37 @@ body {
 }
 
 /* CARDS PRINCIPAIS */
-#claude, #vasco {
-    max-width: 850px;
-    margin: 80px auto;
-
+#vasco {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+#claude {
     background: #121212;
-    border-radius: 18px;
+}
 
-    box-shadow:
-        0 10px 40px rgba(0,0,0,0.8),
-        0 0 20px rgba(255,0,0,0.1);
-
-    border: 1px solid rgba(255,255,255,0.05);
+#claude:hover, 
+#vasco:hover {
+    transform: translateY(-5px);
 }
 
 /* =========================
-   TEXTOS
+   TÍTULOS
    ========================= */
 
 h1, h2 {
     color: #fff;
+    letter-spacing: 1px;
 }
+
+/* brilho leve no título principal */
+h1 {
+    text-shadow: 0 0 10px rgba(255,0,0,0.4);
+}
+
+/* =========================
+   TEXTO
+   ========================= */
 
 p {
     font-size: 20px;
@@ -109,7 +119,7 @@ p {
 }
 
 /* =========================
-   IMAGENS (PADRÃO BONITO)
+   IMAGENS
    ========================= */
 
 img {
@@ -127,6 +137,22 @@ img {
 
 img:hover {
     transform: scale(1.04);
+}
+
+/* 🔥 IMAGEM DO VASCO (SEM FUNDO FEIO) */
+.vasco-img {
+    box-shadow: none;
+    background: transparent;
+    border-radius: 20px;
+}
+
+/* 🔥 SUBTÍTULO AUTOMÁTICO DO VASCO */
+#vasco::after {
+    content: "🐦 A ave mais boiola do site";
+    display: block;
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
 }
 
 /* =========================
@@ -147,7 +173,7 @@ img:hover {
 }
 
 /* =========================
-   CASSINO (já tava bom, só padronizei)
+   CASSINO
    ========================= */
 
 #cassino {
@@ -177,7 +203,13 @@ img:hover {
 
     box-shadow:
         0 10px 30px rgba(0,0,0,0.8),
-        0 0 10px rgba(255,0,0,0.1);
+        0 0 10px rgba(255,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
 }
 
 /* SLOT */
@@ -207,6 +239,7 @@ img:hover {
     border-radius: 8px;
 
     cursor: pointer;
+    transition: 0.2s;
 }
 
 #voltarcass:hover {
