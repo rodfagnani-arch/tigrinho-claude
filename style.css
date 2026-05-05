@@ -60,3 +60,14 @@ button{
 .bigbass {
     border-radius: 30px;
 }
+
+.wiki {
+    text-align: center;
+    font-size: 30px;
+}
+
+.wiki a {
+    display: inline;
+    color: black;
+
+}
