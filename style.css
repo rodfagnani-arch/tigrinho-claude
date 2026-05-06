@@ -249,7 +249,7 @@ img:hover {
     min-height: 100vh;
 
     background:
-        url("splash.jpg"),
+        url("img/splash.jpg"),
         radial-gradient(circle at top, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
 
     background-size: cover;
