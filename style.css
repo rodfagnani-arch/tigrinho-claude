@@ -5,11 +5,16 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-
-    background: radial-gradient(circle at top, #1c1c1c, #050505 70%);
     color: white;
-}
 
+    background:
+        url("claude.jpg"), /* sua imagem */
+        radial-gradient(circle at top, #1c1c1c, #050505 70%); /* seu fundo original */
+
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
 /* =========================
    MENU
    ========================= */
