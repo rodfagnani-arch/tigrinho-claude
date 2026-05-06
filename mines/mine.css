@@ -1,0 +1,685 @@
+    :root {
+    --olive: #4a5240;
+    --dark-olive: #2b2f26;
+    --darker: #1a1c17;
+    --darkest: #0e0f0b;
+    --khaki: #8b8a6a;
+    --sand: #c9b97a;
+    --gold: #d4a017;
+    --gold-bright: #f0c030;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --green: #27ae60;
+    --green-bright: #2ecc71;
+    --mine-color: #e74c3c;
+    --safe-color: #27ae60;
+    --panel-bg: rgba(30,33,25,0.95);
+    --border-color: #4a5240;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--darkest);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(74,82,64,0.15) 39px, rgba(74,82,64,0.15) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(74,82,64,0.15) 39px, rgba(74,82,64,0.15) 40px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    color: var(--sand);
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* HEADER */
+  header {
+    width: 100%;
+    max-width: 960px;
+    padding: 18px 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--olive);
+    position: relative;
+  }
+
+  .logo {
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.4rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(212,160,23,0.5), 2px 2px 0 #000;
+    position: relative;
+  }
+
+  .logo span { color: var(--red-bright); }
+
+  .logo::after {
+    content: 'CLASSIFIED';
+    position: absolute;
+    top: -6px;
+    right: -80px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--red-bright);
+    border: 1px solid var(--red-bright);
+    padding: 1px 4px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    transform: rotate(-8deg);
+  }
+
+  .balance-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .balance-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+  }
+
+  .balance-value {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.6rem;
+    color: var(--gold-bright);
+    text-shadow: 0 0 10px rgba(240,192,48,0.4);
+  }
+
+  /* MAIN LAYOUT */
+  .game-container {
+    width: 100%;
+    max-width: 960px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  /* CONTROL PANEL */
+  .control-panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--gold);
+    padding: 20px;
+    position: relative;
+  }
+
+  .control-panel::before {
+    content: '⬛ COMANDO CENTRAL';
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--olive);
+  }
+
+  .field-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .bet-input {
+    width: 100%;
+    background: var(--darker);
+    border: 1px solid var(--olive);
+    border-bottom: 2px solid var(--gold);
+    color: var(--gold-bright);
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: right;
+  }
+
+  .bet-input:focus { border-bottom-color: var(--gold-bright); }
+
+  .quick-bets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .quick-bet {
+    background: var(--dark-olive);
+    border: 1px solid var(--olive);
+    color: var(--sand);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 1px;
+  }
+
+  .quick-bet:hover {
+    background: var(--olive);
+    color: var(--gold-bright);
+    border-color: var(--gold);
+  }
+
+  /* MINES SELECTOR */
+  .mines-selector {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .mine-opt {
+    background: var(--darker);
+    border: 1px solid var(--olive);
+    color: var(--khaki);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    padding: 7px 2px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+
+  .mine-opt:hover { border-color: var(--red); color: var(--red); }
+  .mine-opt.active {
+    background: var(--red);
+    border-color: var(--red-bright);
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .stat-card {
+    background: var(--darker);
+    border: 1px solid var(--olive);
+    padding: 8px 10px;
+  }
+
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--khaki);
+    letter-spacing: 1px;
+  }
+
+  .stat-value {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .stat-value.green { color: var(--green-bright); }
+  .stat-value.red { color: var(--red-bright); }
+
+  /* BUTTONS */
+  .btn-start {
+    width: 100%;
+    background: linear-gradient(135deg, #1a6e2e, #27ae60);
+    border: none;
+    border-bottom: 4px solid #1a5c24;
+    color: #fff;
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .btn-start::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.4s;
+  }
+
+  .btn-start:hover::before { left: 100%; }
+  .btn-start:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-start:active { transform: translateY(2px); border-bottom-width: 2px; }
+  .btn-start:disabled { background: var(--dark-olive); border-bottom-color: var(--olive); color: var(--khaki); cursor: not-allowed; transform: none; filter: none; }
+
+  .btn-cashout {
+    width: 100%;
+    background: linear-gradient(135deg, #7d5a00, #d4a017);
+    border: none;
+    border-bottom: 4px solid #5a3f00;
+    color: #000;
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cashout:hover { filter: brightness(1.15); transform: translateY(-1px); }
+  .btn-cashout:active { transform: translateY(2px); border-bottom-width: 2px; }
+  .btn-cashout:disabled { background: var(--dark-olive); border-bottom-color: var(--olive); color: var(--khaki); cursor: not-allowed; transform: none; filter: none; }
+
+  /* MULTIPLIER BAR */
+  .multiplier-display {
+    background: var(--darker);
+    border: 1px solid var(--olive);
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mult-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+  }
+
+  .mult-value {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.5rem;
+    color: var(--green-bright);
+    text-shadow: 0 0 10px rgba(46,204,113,0.4);
+    transition: all 0.3s;
+  }
+
+  .mult-value.high { color: var(--gold-bright); text-shadow: 0 0 15px rgba(240,192,48,0.5); }
+  .mult-value.extreme { color: var(--red-bright); text-shadow: 0 0 20px rgba(231,76,60,0.6); }
+
+  /* GRID */
+  .grid-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--olive);
+  }
+
+  .grid-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--khaki);
+  }
+
+  .mission-status {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 3px 8px;
+    border: 1px solid;
+  }
+
+  .mission-status.standby { color: var(--khaki); border-color: var(--khaki); }
+  .mission-status.active { color: var(--green-bright); border-color: var(--green-bright); animation: blink 1s step-end infinite; }
+  .mission-status.danger { color: var(--red-bright); border-color: var(--red-bright); }
+  .mission-status.success { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* MINES GRID */
+  .mines-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  .cell {
+    aspect-ratio: 1;
+    background: var(--dark-olive);
+    border: 1px solid var(--olive);
+    border-bottom: 3px solid #1a1d15;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.12s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cell:hover:not(.revealed):not(.disabled) {
+    background: var(--olive);
+    border-color: var(--sand);
+    transform: translateY(-2px);
+    border-bottom-width: 4px;
+  }
+
+  .cell:active:not(.revealed):not(.disabled) {
+    transform: translateY(1px);
+    border-bottom-width: 2px;
+  }
+
+  /* CELL ICON */
+  .cell-icon {
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.3) rotate(-20deg);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .cell.revealed .cell-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* SAFE CELL */
+  .cell.safe {
+    background: linear-gradient(135deg, #1a3d2b, #215a38);
+    border-color: var(--green);
+    border-bottom-color: #0d2418;
+    cursor: default;
+  }
+
+  /* MINE CELL */
+  .cell.mine {
+    background: linear-gradient(135deg, #3d1a1a, #5a2121);
+    border-color: var(--red);
+    border-bottom-color: #240d0d;
+    cursor: default;
+    animation: shakeCell 0.4s ease;
+  }
+
+  /* DISABLED */
+  .cell.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* CELL HIGHLIGHT (unrevealed mines at end) */
+  .cell.mine-hint {
+    border-color: rgba(231,76,60,0.5);
+    background: rgba(231,76,60,0.08);
+  }
+
+  @keyframes shakeCell {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+  }
+
+  /* CELL RIPPLE */
+  .cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cell.safe::after { background: radial-gradient(circle at center, rgba(46,204,113,0.15), transparent 70%); opacity: 1; }
+  .cell.mine::after { background: radial-gradient(circle at center, rgba(231,76,60,0.2), transparent 70%); opacity: 1; }
+
+  /* WIN PULSE */
+  @keyframes winPulse {
+    0% { box-shadow: 0 0 0 0 rgba(212,160,23,0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(212,160,23,0); }
+    100% { box-shadow: 0 0 0 0 rgba(212,160,23,0); }
+  }
+
+  .cell.win-anim { animation: winPulse 0.5s ease; }
+
+  /* MESSAGE OVERLAY */
+  .message-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .message-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .message-box {
+    background: var(--panel-bg);
+    border: 2px solid var(--gold);
+    padding: 36px 48px;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 400px;
+    width: 90%;
+  }
+
+  .message-overlay.show .message-box { transform: scale(1); }
+
+  .message-box.win-box { border-color: var(--gold-bright); }
+  .message-box.loss-box { border-color: var(--red-bright); }
+
+  .msg-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+
+  .msg-title.win { color: var(--gold-bright); text-shadow: 0 0 20px rgba(240,192,48,0.5); }
+  .msg-title.loss { color: var(--red-bright); text-shadow: 0 0 20px rgba(231,76,60,0.5); }
+
+  .msg-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .msg-amount {
+    font-family: 'Black Ops One', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+
+  .msg-amount.win { color: var(--green-bright); }
+  .msg-amount.loss { color: var(--red); }
+
+  .btn-close-msg {
+    background: var(--gold);
+    border: none;
+    border-bottom: 3px solid #7d5a00;
+    color: #000;
+    font-family: 'Black Ops One', cursive;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    padding: 12px 32px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-close-msg:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+  /* HISTORY BAR */
+  .history-bar {
+    width: 100%;
+    max-width: 960px;
+    padding: 0 20px 20px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .history-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  .history-dots {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .hist-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 1px;
+  }
+
+  .hist-dot.w { background: var(--green); }
+  .hist-dot.l { background: var(--red); }
+
+  /* PROGRESS BAR */
+  .progress-section {
+    background: var(--darker);
+    border: 1px solid var(--olive);
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--khaki);
+  }
+
+  .progress-bar-track {
+    height: 6px;
+    background: var(--dark-olive);
+    border: 1px solid var(--olive);
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  /* DECORATIVE */
+  .corner-deco {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+
+  .corner-deco.tl { top: 4px; left: 4px; border-width: 1px 0 0 1px; }
+  .corner-deco.tr { top: 4px; right: 4px; border-width: 1px 1px 0 0; }
+  .corner-deco.bl { bottom: 4px; left: 4px; border-width: 0 0 1px 1px; }
+  .corner-deco.br { bottom: 4px; right: 4px; border-width: 0 1px 1px 0; }
+
+  /* TICKER */
+  .ticker {
+    width: 100%;
+    background: var(--darker);
+    border-top: 1px solid var(--olive);
+    border-bottom: 1px solid var(--olive);
+    padding: 6px 0;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .ticker-inner {
+    display: flex;
+    gap: 40px;
+    animation: tickerScroll 18s linear infinite;
+    white-space: nowrap;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--khaki);
+    letter-spacing: 2px;
+  }
+
+  @keyframes tickerScroll {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .ticker-item.alert { color: var(--red); }
+  .ticker-item.ok { color: var(--green); }
+  .ticker-item.gold { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .game-container {
+      grid-template-columns: 1fr;
+      padding: 12px;
+    }
+    .logo { font-size: 1.6rem; }
+    .logo::after { display: none; }
+  }

@@ -54,3 +54,26 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnMines = document.getElementById("btn-mines");
+
+    const menuCassino = document.getElementById("menuCassino");
+    const minesArea = document.getElementById("mines-area");
+
+    const voltarMines = document.getElementById("voltar-mines");
+
+    // abrir mines
+    btnMines.addEventListener("click", () => {
+        menuCassino.style.display = "none";
+        minesArea.style.display = "block";
+    });
+
+    // voltar
+    voltarMines.addEventListener("click", () => {
+        minesArea.style.display = "none";
+        menuCassino.style.display = "block";
+    });
+
+});

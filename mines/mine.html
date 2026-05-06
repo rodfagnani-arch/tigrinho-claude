@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WARZONE MINES</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="mine.css">
+
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item alert">⚠ ZONA DE CONFLITO ATIVA</span>
+    <span class="ticker-item gold">▶ OPERAÇÃO MINAS: EM ANDAMENTO</span>
+    <span class="ticker-item ok">✓ SETOR ALFA LIMPO</span>
+    <span class="ticker-item alert">⚠ PERIGO DETECTADO NO SETOR BRAVO</span>
+    <span class="ticker-item gold">▶ MULTIPLICADOR MÁXIMO: 24.75x</span>
+    <span class="ticker-item ok">✓ AGENTE COBRA EXTRAÍDO COM SUCESSO</span>
+    <span class="ticker-item alert">⚠ ZONA DE CONFLITO ATIVA</span>
+    <span class="ticker-item gold">▶ OPERAÇÃO MINAS: EM ANDAMENTO</span>
+    <span class="ticker-item ok">✓ SETOR ALFA LIMPO</span>
+  </div>
+</div>
+
+<header>
+  <div class="logo">WAR<span>MINES</span></div>
+  <div class="balance-display">
+    <span class="balance-label">▶ SALDO DA TROPA</span>
+    <span class="balance-value" id="balance">R$ 1.000,00</span>
+  </div>
+</header>
+
+<div class="game-container">
+  <!-- CONTROL PANEL -->
+  <div class="control-panel">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+
+    <div class="input-group">
+      <span class="field-label">▶ VALOR DA APOSTA (R$)</span>
+      <input type="number" class="bet-input" id="betInput" value="10" min="1" max="1000">
+      <div class="quick-bets">
+        <button class="quick-bet" onclick="setBet(5)">R$5</button>
+        <button class="quick-bet" onclick="setBet(10)">R$10</button>
+        <button class="quick-bet" onclick="setBet(25)">R$25</button>
+        <button class="quick-bet" onclick="doubleBet()">2X</button>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <span class="field-label">▶ QTDE DE MINAS</span>
+      <div class="mines-selector" id="minesSelector">
+        <div class="mine-opt" data-val="1">1</div>
+        <div class="mine-opt active" data-val="3">3</div>
+        <div class="mine-opt" data-val="5">5</div>
+        <div class="mine-opt" data-val="10">10</div>
+        <div class="mine-opt" data-val="15">15</div>
+      </div>
+    </div>
+
+    <div class="multiplier-display">
+      <span class="mult-label">MULTIPLICADOR</span>
+      <span class="mult-value" id="multiplierDisplay">1.00x</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">LUCRO POTENCIAL</div>
+        <div class="stat-value green" id="potentialWin">R$ 0,00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">CAMPOS LIMPOS</div>
+        <div class="stat-value" id="safeCount">0 / 25</div>
+      </div>
+    </div>
+
+    <div class="progress-section" style="margin-bottom:16px;">
+      <div class="progress-label">
+        <span>PROGRESSO DA MISSÃO</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <button class="btn-start" id="btnStart" onclick="startGame()">⚔ INICIAR MISSÃO</button>
+    <button class="btn-cashout" id="btnCashout" disabled onclick="cashout()">💰 EXTRAIR TROPAS</button>
+  </div>
+
+  <!-- GRID SECTION -->
+  <div class="grid-section">
+    <div class="grid-header">
+      <span class="grid-title">CAMPO DE BATALHA</span>
+      <span class="mission-status standby" id="missionStatus">● AGUARDANDO</span>
+    </div>
+
+    <div class="mines-grid" id="minesGrid"></div>
+
+    <!-- HISTORY -->
+    <div class="history-bar">
+      <span class="history-label">HISTÓRICO:</span>
+      <div class="history-dots" id="historyDots"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGE OVERLAY -->
+<div class="message-overlay" id="msgOverlay">
+  <div class="message-box" id="msgBox">
+    <div class="msg-title" id="msgTitle">VITÓRIA!</div>
+    <div class="msg-sub" id="msgSub">MISSÃO CONCLUÍDA</div>
+    <div class="msg-amount" id="msgAmount">+R$ 0,00</div>
+    <button class="btn-close-msg" onclick="closeMessage()">NOVA MISSÃO</button>
+  </div>
+
+<script src="mine.js"></script>
+
+</div>
+</body>
+</html>

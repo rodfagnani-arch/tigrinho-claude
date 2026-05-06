@@ -186,6 +186,12 @@ img:hover {
     border-radius: 20px;
 }
 
+.mines {
+    max-width: 600px;
+    border-radius: 20px;
+
+}
+
 /* CENTRALIZA JOGO */
 .game-wrapper {
     display: flex;
@@ -266,4 +272,18 @@ img:hover {
     border: none;
 
     background: transparent; /* 👈 garante */
+}
+
+#jogo-mines {
+  position: fixed;   /* fixa na tela */
+  top: 0;
+  left: 200px;
+
+  width: 100vw;      /* largura total da tela */
+  height: 100vh;     /* altura total da tela */
+
+  border: 4px solid #d4a017; /* sua borda */
+  box-sizing: border-box;    /* evita aumentar tamanho por causa da borda */
+
+  background: #000;
 }
