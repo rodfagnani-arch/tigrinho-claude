@@ -8,7 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0a0f0b; display: flex; justify-content: center; }
+    body { 
+  background: transparent; /* 🔥 ESSENCIAL */
+  display: flex; 
+  justify-content: center; 
+}
 
     .machine-wrap { display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; font-family: 'Nunito', sans-serif; }
     .machine-title { font-family: 'Bangers', cursive; font-size: 38px; letter-spacing: 3px; color: #1a6b3c; text-shadow: 2px 2px 0 #a8e6bf, 4px 4px 0 rgba(0,0,0,0.12); margin-bottom: 4px; }
@@ -304,10 +308,10 @@ function finish(results) {
     winLine.className = 'win-line active';
     lastWin.textContent = '+' + win;
     if (win >= bet * 50) {
-      msg.textContent = '🎉 SUPER PESCA! +' + win + ' 🎉';
+      msg.textContent = '🎉 BIG WIN! +' + win + ' 🎉';
       msg.className = 'result-msg msg-jackpot';
     } else if (win >= bet * 10) {
-      msg.textContent = '🐟 PEIXÃO! VOCÊ GANHOU +' + win + '!';
+      msg.textContent = '🐟 WIN! +' + win + '!';
       msg.className = 'result-msg msg-win';
     } else {
       msg.textContent = '✨ Peixinho! +' + win;

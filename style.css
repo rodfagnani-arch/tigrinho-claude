@@ -7,13 +7,7 @@ body {
     font-family: Arial, sans-serif;
     color: white;
 
-    background:
-        url("claude.jpg"), /* sua imagem */
-        radial-gradient(circle at top, #1c1c1c, #050505 70%); /* seu fundo original */
-
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: overlay;
+    background: #0a0f0b; /* fundo padrão do site */
 }
 /* =========================
    MENU
@@ -183,6 +177,7 @@ img:hover {
 
 #cassino {
     min-height: 100vh;
+    padding-top: 0;
 }
 
 /* IMAGEM DO JOGO */
@@ -249,4 +244,26 @@ img:hover {
 
 #voltarcass:hover {
     opacity: 0.8;
+}
+#roletaArea {
+    min-height: 100vh;
+
+    background:
+        url("splash.jpg"),
+        radial-gradient(circle at top, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game-frame iframe {
+    width: 100%;
+    height: 650px;
+    border: none;
+
+    background: transparent; /* 👈 garante */
 }
