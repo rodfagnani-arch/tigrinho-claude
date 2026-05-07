@@ -139,14 +139,40 @@ img:hover {
     transform: scale(1.04);
 }
 
-/* 🔥 IMAGEM DO VASCO (SEM FUNDO FEIO) */
-.vasco-img {
-    box-shadow: none;
-    background: transparent;
-    border-radius: 20px;
+/* 🔥 ABA VASCO */
+#vasco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* 🔥 SUBTÍTULO AUTOMÁTICO DO VASCO */
+/* 🔥 CONTEÚDO */
+.vasco {
+    margin: 40px auto;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* 🔥 TEXTO */
+#vasco p {
+    font-size: 25px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* 🔥 IMAGEM DO VASCO */
+#vasco-img {
+    margin-top: 20px;
+    border-radius: 20px;
+    background: transparent;
+    box-shadow: none;
+    transition: 0.3s;
+}
+
+
+/* 🔥 SUBTÍTULO AUTOMÁTICO */
 #vasco::after {
     content: "🐦 A ave mais boiola do site";
     display: block;
@@ -154,6 +180,12 @@ img:hover {
     color: #888;
     font-size: 14px;
 }
+
+/* 🔥 TÍTULOS */
+h2 {
+    margin-top: 30px;
+}
+
 
 /* =========================
    LINK WIKI

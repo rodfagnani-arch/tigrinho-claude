@@ -55,6 +55,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+/* 🔥 CONTROLE */
+let mostrandoVasco = true;
+
+/* 🔥 TROCAR IMAGEM */
+function trocarImagem() {
+
+    let img = document.getElementById("vasco-img");
+
+    if (mostrandoVasco) {
+
+        img.src = "img/pedro.jpeg";
+
+    } else {
+
+        img.src = "https://www.parrotwebsite.com/wp-content/uploads/2020/09/cockate.jpg";
+
+    }
+
+    mostrandoVasco = !mostrandoVasco;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const btnMines = document.getElementById("btn-mines");
