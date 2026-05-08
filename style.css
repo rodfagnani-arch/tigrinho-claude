@@ -10,7 +10,6 @@ body {
     overflow: hidden;
 
     background: #0a0f0b;
-    z-index: 1;
 }
 
 html{
@@ -21,6 +20,10 @@ html{
 
 html::-webkit-scrollbar{
     display: none;
+}
+
+*{
+    background: transparent;
 }
 
 /* =========================
@@ -99,8 +102,12 @@ html::-webkit-scrollbar{
 }
 
 .claude-txt{
-    z-index: 2;
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin: auto;
 }
+
 
 
 /* =========================
@@ -399,5 +406,5 @@ h2 {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: -1;
+    z-index: 0;
 }
