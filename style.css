@@ -1,410 +1,521 @@
-/* =========================
-   BASE DO SITE
-   ========================= */
+:root {
+   --bg: #070b13;
+   --bg-soft: #101a28;
+   --panel: rgba(15, 23, 32, 0.9);
+   --panel-strong: rgba(11, 17, 24, 0.96);
+   --panel-alt: rgba(17, 27, 38, 0.86);
+   --text: #edf3f8;
+   --muted: #b7c6d4;
+   --line: rgba(255, 255, 255, 0.08);
+   --accent: #e11d2e;
+   --accent-strong: #b71122;
+   --accent-soft: #ff5666;
+   --gold: #facc15;
+   --shadow: rgba(0, 0, 0, 0.35);
+}
 
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html {
+   scroll-behavior: smooth;
+   overflow-y: scroll;
+   scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+   display: none;
+}
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    overflow: hidden;
-
-    background: #0a0f0b;
+   margin: 0;
+   font-family: Arial, sans-serif;
+   color: var(--text);
+   background:
+       radial-gradient(circle at top, rgba(225, 29, 46, 0.18), transparent 35%),
+       linear-gradient(180deg, #050a11 0%, #0b1119 100%);
+   min-height: 100vh;
+   line-height: 1.6;
 }
-
-html{
-    overflow-y: scroll;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-}
-
-html::-webkit-scrollbar{
-    display: none;
-}
-
-*{
-    background: transparent;
-}
-
-/* =========================
-   MENU
-   ========================= */
-
-.menu {
-    position: fixed;
-    top: 20px;
-    left: 20px; 
-
-    width: 150px;
-    height: 50px;
-
-    background: linear-gradient(340deg, black, red);
-    border-radius: 10px;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    overflow: hidden;
-    transition: 0.3s;
-
-    z-index: 9999;
-}
-
-.menu span {
-    font-weight: bold;
-}
-
-.conteudo {
-    display: none;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.menu.ativo {
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-}
-
-.menu.ativo .conteudo {
-    display: block;
-}
-
-.conteudo p {
-    margin: 5px 0;
-    padding: 6px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.conteudo p:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-/* =========================
-   CONTEÚDO
-   ========================= */
-
-#claude, #vasco, #cassino {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-/* CARDS PRINCIPAIS */
-#vasco {
-    background: transparent;
-    box-shadow: none;
-    border: none;
-}
-
-.claude-txt{
-    position: relative;
-    z-index: 1;
-    width: fit-content;
-    margin: auto;
-}
-
-
-
-/* =========================
-   TÍTULOS
-   ========================= */
-
-h1, h2 {
-    color: #fff;
-    letter-spacing: 1px;
-}
-
-/* brilho leve no título principal */
-h1 {
-    text-shadow: 0 0 10px rgba(255,0,0,0.4);
-}
-
-/* =========================
-   TEXTO
-   ========================= */
-
-p {
-    font-size: 20px;
-    max-width: 650px;
-    margin: 20px auto;
-    color: #ccc;
-}
-
-/* =========================
-   IMAGENS
-   ========================= */
 
 img {
-    display: block;
-    margin: 25px auto;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.8),
-        0 0 15px rgba(255,0,0,0.15);
-
-    transition: 0.3s;
+   display: block;
+   max-width: 100%;
+   border-radius: 18px;
+   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 img:hover {
-    transform: scale(1.04);
+   transform: translateY(-2px) scale(1.01);
 }
 
-/* 🔥 ABA VASCO */
-#vasco {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
+#claude,
+#vasco,
+#cassino {
+   position: relative;
+   z-index: 1;
+   padding: 80px 20px 60px;
+   text-align: center;
 }
 
-/* 🔥 CONTEÚDO */
-.vasco {
-    margin: 40px auto;
-    border-radius: 15px;
-    text-align: center;
+#claude {
+   background: transparent;
 }
 
-/* 🔥 TEXTO */
-#vasco p {
-    font-size: 25px;
-    max-width: 800px;
-    margin: 20px auto;
+#vasco,
+#cassino {
+   max-width: 1200px;
+   margin: 0 auto;
 }
 
-/* 🔥 IMAGEM DO VASCO */
-#vasco-img {
-    margin-top: 20px;
-    border-radius: 20px;
-    background: transparent;
-    box-shadow: none;
-    transition: 0.3s;
+.claude-txt {
+   position: relative;
+   z-index: 1;
+   width: min(100%, 1100px);
+   margin: 0 auto;
+   padding: 28px 28px 36px;
+   background: rgba(10, 16, 22, 0.74);
+   border: 1px solid var(--line);
+   border-radius: 24px;
+   box-shadow: 0 28px 60px var(--shadow);
+   backdrop-filter: blur(8px);
 }
 
-
-/* 🔥 SUBTÍTULO AUTOMÁTICO */
-#vasco::after {
-    content: "🐦 A ave mais boiola do site";
-    display: block;
-    margin-top: 10px;
-    color: #888;
-    font-size: 14px;
+h1,
+h2,
+h3,
+.game-title,
+.game-provider {
+   color: var(--text);
+   letter-spacing: 0.04em;
 }
 
-/* 🔥 TÍTULOS */
+h1 {
+   margin-bottom: 24px;
+   font-size: clamp(2.2rem, 5vw, 4.25rem);
+   text-transform: uppercase;
+   font-weight: 900;
+   letter-spacing: 0.12em;
+   text-shadow: 0 0 18px rgba(225, 29, 46, 0.4);
+}
+
 h2 {
-    margin-top: 30px;
+   margin: 0 auto 22px;
+   font-size: clamp(2rem, 4vw, 3.2rem);
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
 }
 
+p,
+.topicos,
+.tabela,
+.wiki,
+#cassino > p {
+   color: var(--muted);
+}
 
-/* =========================
-   LINK WIKI
-   ========================= */
+p {
+   max-width: 760px;
+   margin: 20px auto;
+   font-size: 1.1rem;
+   line-height: 1.8;
+}
+
+img {
+   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.28), 0 0 18px rgba(225, 29, 46, 0.08);
+}
 
 .wiki {
-    font-size: 22px;
+   margin: 18px auto 28px;
+   font-size: 1.1rem;
+   font-weight: 700;
 }
 
 .wiki a {
-    color: #ff3c3c;
-    text-decoration: none;
+   color: #fff;
+   text-decoration: none;
+   padding: 12px 18px;
+   border-radius: 999px;
+   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+   box-shadow: 0 14px 26px rgba(177, 17, 34, 0.35);
+   display: inline-block;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .wiki a:hover {
-    text-decoration: underline;
+   transform: translateY(-2px);
+   box-shadow: 0 18px 30px rgba(177, 17, 34, 0.45);
 }
 
-/* =========================
-   CASSINO
-   ========================= */
-
-#cassino {
-    min-height: 100vh;
-    padding-top: 0;
+.topicos {
+   font-size: 1.05rem;
+   max-width: 760px;
+   margin: 30px auto;
+   padding: 22px 20px 16px;
+   border: 1px solid var(--line);
+   background: rgba(255, 255, 255, 0.02);
+   border-radius: 16px;
+   text-align: left;
 }
 
-/* IMAGEM DO JOGO */
-.bigbass {
-    max-width: 300px;
-    border-radius: 20px;
-    display: inline-block;
+.topicos ul {
+   list-style: none;
+   display: grid;
+   gap: 12px;
 }
 
-.mines {
-    max-width: 210px;
-    border-radius: 20px;
-    display: inline-block; /* faz ficar lado a lado */
-    margin-left: 20px; /* espaço entre elas */
-    vertical-align: top; /* alinha melhor */
+.topicos li {
+   position: relative;
+   padding-left: 18px;
 }
 
-/* CENTRALIZA JOGO */
-.game-wrapper {
-    display: flex;
-    justify-content: center;
+.topicos li::before {
+   content: "";
+   position: absolute;
+   left: 0;
+   top: 11px;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, var(--gold), var(--accent-soft));
+   box-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
 }
 
-/* CARD DO JOGO */
-.game-card {
-    width: 460px;
-    background: #121212;
-    border-radius: 16px;
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,0.06);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.8),
-        0 0 10px rgba(255,0,0,0.15);
-
-    transition: 0.3s;
-}
-
-.game-card:hover {
-    transform: translateY(-4px);
-}
-
-/* SLOT */
-.game-frame iframe {
-    width: 100%;
-    height: 650px;
-    border: none;
-}
-
-/* FOOTER */
-.game-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 14px;
-    background: #0d0d0d;
-}
-
-/* BOTÃO */
-#voltarcass {
-    background: linear-gradient(340deg, black, red);
-    color: white;
-    border: none;
-
-    padding: 8px 14px;
-    border-radius: 8px;
-
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-#voltarcass:hover {
-    opacity: 0.8;
-}
-#roletaArea {
-    min-height: 100vh;
-
-    background:
-        url("img/splash.jpg"),
-        radial-gradient(circle at top, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
-
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.game-frame iframe {
-    width: 100%;
-    height: 650px;
-    border: none;
-
-    background: transparent; /* 👈 garante */
-}
-
-#jogo-mines {
-  position: fixed;   /* fixa na tela */
-  top: 0;
-  left: 200px;
-
-  width: 100vw;      /* largura total da tela */
-  height: 100vh;     /* altura total da tela */
-
-  border: 4px solid black; /* sua borda */
-  box-sizing: border-box;    /* evita aumentar tamanho por causa da borda */
-
-  background: #000;
-}
-
-#voltar-mines{
-    position: fixed;
-    bottom: 30px;
-    left: 20px;
-
-    width: 150px;
-    height: 50px;
-
-    background: linear-gradient(340deg, black, red);
-    border-radius: 10px;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    overflow: hidden;
-    transition: 0.3s;
-
-    z-index: 9999;
-
-}
-
-.topicos{
-    font-size: 20px;
-    max-width: 650px;
-    margin: 20px auto;
-    color: #ccc;
-}
-
-.tabela{
-    font-size: 20px;
-    max-width: 650px;
-    margin: 20px auto;
-    color: #ccc;
-    border: 1px solid black;
-    background-color: #950606;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+.tabela {
+   margin: 36px auto 0;
+   max-width: 860px;
+   border-radius: 18px;
+   overflow: hidden;
+   border: 1px solid var(--line);
+   background: linear-gradient(180deg, rgba(21, 31, 42, 0.88), rgba(10, 16, 22, 0.96));
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .tabela table {
-    width: 100%;
-    border-collapse: collapse;
+   width: 100%;
+   border-collapse: collapse;
 }
 
 .tabela th,
 .tabela td {
-    border: 1px solid black;
-    padding: 15px;
-    text-align: center;
+   padding: 16px 14px;
+   border: 1px solid var(--line);
+   text-align: center;
+   vertical-align: middle;
 }
 
 .tabela th {
-    background-color: red;
+   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+   color: #fff;
+   font-size: 0.9rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
 }
 
-#particles-js{
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
+.tabela td {
+   color: var(--muted);
+   font-size: 0.96rem;
+}
+
+.menu {
+   position: fixed;
+   top: 20px;
+   left: 20px;
+   width: 160px;
+   min-height: 56px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 14px 16px;
+   background: rgba(16, 24, 32, 0.9);
+   border: 1px solid var(--line);
+   border-radius: 18px;
+   backdrop-filter: blur(8px);
+   box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+   color: var(--text);
+   cursor: pointer;
+   overflow: hidden;
+   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+   z-index: 9999;
+}
+
+.menu:hover {
+   transform: translateY(-1px);
+   border-color: rgba(255, 255, 255, 0.14);
+}
+
+.menu span {
+   font-weight: 700;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   font-size: 0.8rem;
+}
+
+.conteudo {
+   display: none;
+   width: 100%;
+   margin-top: 12px;
+   padding-top: 10px;
+   border-top: 1px solid var(--line);
+}
+
+.menu.ativo {
+   align-items: flex-start;
+   min-height: auto;
+   padding-bottom: 12px;
+}
+
+.menu.ativo .conteudo {
+   display: block;
+}
+
+.conteudo p {
+   margin: 6px 0;
+   padding: 10px 12px;
+   border-radius: 10px;
+   cursor: pointer;
+   color: var(--text);
+   transition: background 0.2s ease, transform 0.2s ease;
+   font-size: 0.95rem;
+}
+
+.conteudo p:hover {
+   background: rgba(255, 255, 255, 0.06);
+   transform: translateX(2px);
+}
+
+#vasco {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   max-width: 960px;
+   margin: 0 auto;
+   min-height: 100vh;
+}
+
+#vasco::after {
+   content: "🐦 A ave mais boiola do site";
+   display: block;
+   margin-top: 10px;
+   color: rgba(255, 255, 255, 0.6);
+   font-size: 0.9rem;
+   letter-spacing: 0.08em;
+}
+
+.vasco {
+   width: min(100%, 780px);
+   margin: 22px auto 0;
+   padding: 26px 18px 22px;
+   border: 1px solid var(--line);
+   border-radius: 20px;
+   background: rgba(12, 20, 28, 0.85);
+   box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+   text-align: center;
+}
+
+#vasco p {
+   max-width: 620px;
+   font-size: 1.2rem;
+   color: var(--muted);
+}
+
+#vasco-img {
+   margin: 18px auto 8px;
+   border-radius: 22px;
+   background: transparent;
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+#cassino {
+   min-height: 100vh;
+   padding-top: 30px;
+   max-width: 1100px;
+}
+
+#cassino > p {
+   font-size: 1.05rem;
+   margin: 12px auto 28px;
+}
+
+#menuCassino {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 28px;
+   margin: 30px auto 20px;
+}
+
+.bigbass,
+.mines {
+   display: inline-block;
+   max-width: 300px;
+   border-radius: 24px;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   box-shadow: 0 20px 38px rgba(0, 0, 0, 0.28);
+   transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.bigbass:hover,
+.mines:hover {
+   transform: translateY(-4px) scale(1.01);
+   box-shadow: 0 26px 46px rgba(0, 0, 0, 0.3);
+}
+
+.mines {
+   max-width: 220px;
+   margin-left: 0;
+}
+
+.game-wrapper {
+   display: flex;
+   justify-content: center;
+   padding-top: 10px;
+}
+
+.game-card {
+   width: min(100%, 520px);
+   background: rgba(12, 14, 18, 0.92);
+   border-radius: 24px;
+   overflow: hidden;
+   border: 1px solid var(--line);
+   box-shadow: 0 22px 44px rgba(0, 0, 0, 0.25);
+   transition: transform 0.25s ease;
+}
+
+.game-card:hover {
+   transform: translateY(-4px);
+}
+
+.game-frame iframe {
+   width: 100%;
+   height: 650px;
+   border: none;
+   display: block;
+   background: transparent;
+}
+
+.game-footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 12px;
+   padding: 16px 18px;
+   background: linear-gradient(180deg, #121821 0%, #0d1117 100%);
+   border-top: 1px solid var(--line);
+}
+
+.game-title {
+   font-size: 1.1rem;
+   font-weight: 800;
+   letter-spacing: 0.04em;
+   margin-bottom: 4px;
+}
+
+.game-provider {
+   color: var(--muted);
+   font-size: 0.78rem;
+   text-transform: uppercase;
+   letter-spacing: 0.12em;
+}
+
+#voltarcass,
+#voltar-mines {
+   border: none;
+   border-radius: 12px;
+   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+   color: #fff;
+   padding: 10px 14px;
+   font-weight: 700;
+   cursor: pointer;
+   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+   box-shadow: 0 12px 24px rgba(177, 17, 34, 0.35);
+}
+
+#voltarcass:hover,
+#voltar-mines:hover {
+   opacity: 0.95;
+   transform: translateY(-1px);
+}
+
+#roletaArea {
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background:
+       linear-gradient(rgba(7, 11, 19, 0.4), rgba(7, 11, 19, 0.7)),
+       url("img/splash.jpg") center/cover no-repeat;
+}
+
+#jogo-mines {
+   position: fixed;
+   top: 0;
+   left: 200px;
+   width: calc(100vw - 200px);
+   height: 100vh;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   box-sizing: border-box;
+   background: #000;
+   z-index: 2;
+}
+
+#voltar-mines {
+   position: fixed;
+   bottom: 24px;
+   left: 20px;
+   width: 150px;
+   height: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 9999;
+}
+
+#particles-js {
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   z-index: 0;
+   pointer-events: none;
+}
+
+@media (max-width: 760px) {
+   .menu {
+       top: 12px;
+       left: 12px;
+       width: 138px;
+   }
+
+   #claude,
+   #vasco,
+   #cassino {
+       padding-left: 16px;
+       padding-right: 16px;
+   }
+
+   .claude-txt {
+       padding: 22px 16px 28px;
+   }
+
+   #menuCassino {
+       flex-direction: column;
+   }
+
+   .bigbass,
+   .mines {
+       max-width: min(80vw, 320px);
+   }
+
+   #jogo-mines {
+       left: 0;
+       width: 100vw;
+   }
 }
