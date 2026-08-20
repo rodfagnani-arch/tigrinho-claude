@@ -1,3 +1,11 @@
+@font-face {
+   font-family: "Chicken Steak";
+   src: url("fonts/Chicken Steak.ttf") format("opentype");
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
 :root {
    --bg: #070b13;
    --bg-soft: #101a28;
@@ -84,6 +92,20 @@ img:hover {
    backdrop-filter: blur(8px);
 }
 
+.claude-txt > img {
+   width: auto;
+   max-width: 100%;
+   height: auto;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+#claude-img,
+#puc-img {
+   width: min(100%, 400px);
+   margin: 28px auto 0;
+}
+
 h1,
 h2,
 h3,
@@ -100,6 +122,11 @@ h1 {
    font-weight: 900;
    letter-spacing: 0.12em;
    text-shadow: 0 0 18px rgba(225, 29, 46, 0.4);
+}
+
+#claude h1 {
+   font-family: "Chicken Steak", Arial, sans-serif;
+   font-weight: normal;
 }
 
 h2 {
