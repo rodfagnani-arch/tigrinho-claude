@@ -1,21 +1,35 @@
 let abaAtual = "claude";
 
+function mostrarAba(idDaAba) {
+    ["claude", "vasco", "cassino", "aryel"].forEach(id => {
+        const aba = document.getElementById(id);
+        if (aba) aba.style.display = id === idDaAba ? "block" : "none";
+    });
+
+    abaAtual = idDaAba;
+
+    if (idDaAba !== "aryel") {
+        const audio = document.getElementById("aryelAudio");
+        if (audio) audio.pause();
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function trocarAba() {
-    document.getElementById("claude").style.display = "none";
-    document.getElementById("vasco").style.display = "block";
-    document.getElementById("cassino").style.display = "none";
+    mostrarAba("vasco");
 }
 
 function trocarAbaCassino() {
-    document.getElementById("claude").style.display = "none";
-    document.getElementById("vasco").style.display = "none";
-    document.getElementById("cassino").style.display = "block";
+    mostrarAba("cassino");
 }
 
 function irClaude() {
-    document.getElementById("claude").style.display = "block";
-    document.getElementById("vasco").style.display = "none";
-    document.getElementById("cassino").style.display = "none";
+    mostrarAba("claude");
+}
+
+function abrirAryel() {
+    mostrarAba("aryel");
 }
 
 // abrir jogo
@@ -65,7 +79,7 @@ function trocarImagem() {
 
     if (mostrandoVasco) {
 
-        img.src = "img/pedro.jpeg";
+        img.src = "assets/img/pedro.jpeg";
 
     } else {
 
@@ -97,4 +111,91 @@ document.addEventListener("DOMContentLoaded", () => {
         menuCassino.style.display = "block";
     });
 
+});
+
+// Área secreta Aryel: use o campo de código ou clique 5 vezes no título principal.
+document.addEventListener("DOMContentLoaded", () => {
+    const codigoSecreto = [
+        "aryel",
+        "ariri",
+        "macio",
+        "passivo",
+        "mestre",
+        "safado",
+        "vivi"
+    ];
+    const tituloClaude = document.querySelector("#claude h1");
+    const formularioSecreto = document.getElementById("secretAccess");
+    const campoSecreto = document.getElementById("secretCode");
+    const feedbackSecreto = document.getElementById("secretFeedback");
+    const audio = document.getElementById("aryelAudio");
+    const botaoAudio = document.getElementById("aryelPlay");
+    const statusAudio = document.getElementById("aryelAudioStatus");
+    let cliquesNoTitulo = [];
+
+    formularioSecreto?.addEventListener("submit", event => {
+        event.preventDefault();
+        const codigoDigitado = campoSecreto.value.trim().toLowerCase();
+
+        if (codigoSecreto.includes(codigoDigitado)) {
+            feedbackSecreto.textContent = "Código aceito.";
+            formularioSecreto.classList.remove("has-error");
+            campoSecreto.value = "";
+            abrirAryel();
+        } else {
+            feedbackSecreto.textContent = "Código incorreto.";
+            formularioSecreto.classList.remove("has-error");
+            void formularioSecreto.offsetWidth;
+            formularioSecreto.classList.add("has-error");
+            campoSecreto.select();
+        }
+    });
+
+    tituloClaude?.addEventListener("click", () => {
+        const agora = Date.now();
+        cliquesNoTitulo = cliquesNoTitulo.filter(instante => agora - instante < 3500);
+        cliquesNoTitulo.push(agora);
+
+        if (cliquesNoTitulo.length >= 5) {
+            abrirAryel();
+            cliquesNoTitulo = [];
+        }
+    });
+
+    document.querySelectorAll(".aryel-image").forEach(imagem => {
+        const atualizarImagem = () => {
+            imagem.classList.toggle("is-missing", !imagem.complete || imagem.naturalWidth === 0);
+        };
+
+        imagem.addEventListener("load", atualizarImagem);
+        imagem.addEventListener("error", atualizarImagem);
+        atualizarImagem();
+    });
+
+    botaoAudio?.addEventListener("click", async () => {
+        if (audio.paused) {
+            try {
+                await audio.play();
+                botaoAudio.classList.add("is-playing");
+                botaoAudio.setAttribute("aria-pressed", "true");
+                botaoAudio.innerHTML = '<span aria-hidden="true">Ⅱ</span> Pausar áudio';
+                statusAudio.textContent = "Reproduzindo agora";
+            } catch {
+                statusAudio.textContent = "Adicione o arquivo audio/aryel.mp3";
+            }
+        } else {
+            audio.pause();
+        }
+    });
+
+    audio?.addEventListener("pause", () => {
+        botaoAudio.classList.remove("is-playing");
+        botaoAudio.setAttribute("aria-pressed", "false");
+        botaoAudio.innerHTML = '<span aria-hidden="true">▶</span> Reproduzir áudio';
+        if (audio.currentTime > 0 && !audio.ended) statusAudio.textContent = "Áudio pausado";
+    });
+
+    audio?.addEventListener("ended", () => {
+        statusAudio.textContent = "Reprodução concluída";
+    });
 });

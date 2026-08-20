@@ -69,11 +69,72 @@
             </table>
         </div>
 
+        <form class="secret-access" id="secretAccess" autocomplete="off">
+            <label for="secretCode">Digite o código</label>
+            <div class="secret-access-control">
+                <input
+                    id="secretCode"
+                    name="secretCode"
+                    type="password"
+                    placeholder="Digite o código"
+                    aria-describedby="secretFeedback"
+                    spellcheck="false"
+                >
+                <button type="submit" aria-label="Confirmar código">Entrar</button>
+            </div>
+            <span id="secretFeedback" role="status" aria-live="polite"></span>
+        </form>
+
     </div>
 
     <div id="particles-js"></div>
 
 </div>
+
+<!-- ABA SECRETA ARYEL — não aparece no menu -->
+<section id="aryel" aria-labelledby="aryel-title" style="display: none;">
+    <div class="aryel-card">
+        <button class="aryel-back" type="button" onclick="irClaude()">← Voltar</button>
+
+        <p class="aryel-eyebrow">Arquivo confidencial</p>
+        <h2 id="aryel-title">ARYEL</h2>
+        <p class="aryel-intro">Uma área escondida entre os sinais.</p>
+
+        <div class="aryel-gallery">
+            <figure class="aryel-media-card" data-placeholder="Imagem 01">
+                <img
+                    class="aryel-image"
+                    src="assets/img/ariel.png"
+                    alt="Primeira imagem de Aryel"
+                >
+            </figure>
+
+            <figure class="aryel-media-card" data-placeholder="Imagem 02">
+                <img
+                    class="aryel-image"
+                    src="assets/img/ariri.png"
+                    alt="Segunda imagem de Aryel"
+                >
+            </figure>
+        </div>
+
+        <div class="aryel-audio-panel">
+            <div>
+                <span class="aryel-audio-label">Registro de áudio</span>
+                <strong id="aryelAudioStatus">Pronto para reproduzir</strong>
+            </div>
+
+            <button class="aryel-play" id="aryelPlay" type="button" aria-pressed="false">
+                <span aria-hidden="true">▶</span>
+                Reproduzir áudio
+            </button>
+
+            <audio id="aryelAudio" preload="metadata">
+                <source src="assets/audio/alovivi.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+</section>
 
 <!-- ABA VASCO -->
 <div id="vasco" style="display: none;">
@@ -104,8 +165,8 @@
 
 <!-- MENU DO JOGO -->
 <div id="menuCassino">
-    <img class="bigbass" src="img/bigbass.jpg" width="500" onclick="abrirRoleta()" style="cursor:pointer;">
-    <img class="mines" id="btn-mines" src="img/mines.png" width="500" style="cursor:pointer;">
+    <img class="bigbass" src="assets/img/bigbass.jpg" width="500" onclick="abrirRoleta()" style="cursor:pointer;">
+    <img class="mines" id="btn-mines" src="assets/img/mines.png" width="500" style="cursor:pointer;">
 
 </div>
 
