@@ -5,64 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Big Bass Splash</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-  background: transparent; /* 🔥 ESSENCIAL */
-  display: flex; 
-  justify-content: center; 
-}
-
-    .machine-wrap { display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; font-family: 'Nunito', sans-serif; }
-    .machine-title { font-family: 'Bangers', cursive; font-size: 38px; letter-spacing: 3px; color: #1a6b3c; text-shadow: 2px 2px 0 #a8e6bf, 4px 4px 0 rgba(0,0,0,0.12); margin-bottom: 4px; }
-    .subtitle { font-size: 13px; font-weight: 700; color: #2e8b57; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; opacity: 0.75; }
-
-    .machine-body { background: linear-gradient(160deg, #1a4a2e 0%, #0d2b1a 100%); border-radius: 20px; padding: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08); width: 400px; }
-    .machine-inner { background: #0f1f14; border-radius: 15px; padding: 16px; }
-
-    .water-bar { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #1e90ff, #00bfff, #87ceeb, #1e90ff); background-size: 200% 100%; animation: waterFlow 2s linear infinite; margin-bottom: 14px; opacity: 0.7; }
-    @keyframes waterFlow { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
-
-    .reels-container { display: flex; gap: 8px; background: #060e09; border-radius: 12px; padding: 8px; border: 2px solid #1e4d2b; position: relative; overflow: hidden; }
-    .reel-wrapper { flex: 1; height: 200px; overflow: hidden; border-radius: 8px; background: #0a1a0e; border: 1px solid #1e4d2b; position: relative; }
-    .reel-shimmer { position: absolute; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, rgba(6,14,9,0.9) 0%, transparent 100%); z-index: 3; pointer-events: none; }
-    .reel-shimmer-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(6,14,9,0.9) 0%, transparent 100%); z-index: 3; pointer-events: none; }
-
-    .win-line { position: absolute; top: 50%; left: -6px; right: -6px; height: 68px; transform: translateY(-50%); border: 2px solid rgba(255,215,0,0.5); border-radius: 4px; z-index: 4; pointer-events: none; transition: border-color 0.3s; }
-    .win-line.active { border-color: rgba(255,215,0,0.9); box-shadow: 0 0 12px rgba(255,215,0,0.4); }
-
-    .reel { display: flex; flex-direction: column; transition: transform 0.08s linear; }
-    .symbol { height: 66px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0; user-select: none; }
-
-    .water-bar-bottom { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #87ceeb, #1e90ff, #00bfff, #87ceeb); background-size: 200% 100%; animation: waterFlow 1.5s linear infinite reverse; margin-top: 14px; opacity: 0.7; }
-
-    /* ==========================================
-       PAINEL — Saldo / Aposta / Último Ganho
-       ========================================== */
-    .balance-row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 8px; }
-    .balance-box { flex: 1; background: #0a1a0e; border: 1px solid #1e4d2b; border-radius: 8px; padding: 8px 10px; text-align: center; }
-    .balance-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #3a8a5a; text-transform: uppercase; }
-    .balance-value { font-size: 18px; font-weight: 900; color: #ffd700; font-family: 'Bangers', cursive; letter-spacing: 1px; }
-    .bet-btn { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #2e8b57; background: #0f2a17; color: #5dba7d; font-size: 14px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
-    .bet-btn:hover { background: #1a4a2e; }
-
-    .spin-btn { width: 100%; margin-top: 12px; padding: 14px; border-radius: 12px; border: none; background: linear-gradient(135deg, #1e8b4f 0%, #0d5c2e 100%); color: #fff; font-family: 'Bangers', cursive; font-size: 26px; letter-spacing: 3px; cursor: pointer; transition: transform 0.1s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.1) inset; position: relative; overflow: hidden; }
-    .spin-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
-    .spin-btn:active { transform: scale(0.98); }
-    .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .spin-btn .ripple { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%); animation: shimmer 2s infinite; }
-    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-
-    .result-msg { text-align: center; font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px; min-height: 30px; margin-top: 10px; transition: all 0.3s; }
-    .msg-win { color: #ffd700; text-shadow: 0 0 8px rgba(255,215,0,0.5); }
-    .msg-lose { color: #6a8a72; }
-    .msg-jackpot { color: #ff6b6b; animation: jackpotPulse 0.5s infinite alternate; }
-    @keyframes jackpotPulse { from { transform: scale(1); color: #ffd700; } to { transform: scale(1.05); color: #ff6b6b; } }
-
-    .fish-deco { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px; font-size: 22px; opacity: 0.5; animation: fishSwim 4s ease-in-out infinite; }
-    @keyframes fishSwim { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
-  </style>
+  <link rel="stylesheet" href="slot.css" />
 </head>
 <body>
 
@@ -115,9 +60,9 @@
         <!-- BLOCO 2: APOSTA -->
         <div class="balance-box">
           <div class="balance-label">Aposta</div>            <!-- ← troque o label aqui -->
-          <div style="display:flex;align-items:center;gap:4px;justify-content:center;margin-top:2px;">
+          <div class="bet-control">
             <button class="bet-btn" id="betDown">−</button>
-            <div style="font-size:18px;font-weight:900;color:#ffd700;font-family:'Bangers',cursive;letter-spacing:1px;" id="betVal">10</div>
+            <div class="bet-value" id="betVal">10</div>
             <button class="bet-btn" id="betUp">+</button>
           </div>
         </div>
