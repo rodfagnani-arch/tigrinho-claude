@@ -43,8 +43,8 @@ body {
    font-family: Arial, sans-serif;
    color: var(--text);
    background:
-       radial-gradient(circle at top, rgba(255, 2, 2, 0.18), transparent 75%),
-       linear-gradient(180deg, #050a11 0%, #0b1119 100%);
+      radial-gradient(circle at top, rgba(255, 2, 2, 0.18), transparent 75%),
+      linear-gradient(180deg, #050a11 0%, #0b1119 100%);
    min-height: 100vh;
    line-height: 1.6;
 }
@@ -786,13 +786,13 @@ img {
 #voltar-mines {
    border: none;
    border-radius: 12px;
-   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+   background: linear-gradient(135deg, black, 50%, rgb(51, 65, 189) 100%);
    color: #fff;
    padding: 10px 14px;
    font-weight: 700;
    cursor: pointer;
    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-   box-shadow: 0 12px 24px rgba(177, 17, 34, 0.35);
+   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
 
 #voltarcass:hover,
@@ -871,59 +871,59 @@ img {
 
 @media (max-width: 760px) {
    .menu {
-       top: 12px;
-       left: 12px;
-       width: 138px;
+      top: 12px;
+      left: 12px;
+      width: 138px;
    }
 
    #claude,
    #vasco,
    #cassino,
    #aryel {
-       padding-left: 16px;
-       padding-right: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
    }
 
    .claude-txt {
-       padding: 22px 16px 28px;
+      padding: 22px 16px 28px;
    }
 
    #menuCassino {
-       flex-direction: column;
+      flex-direction: column;
    }
 
    .bigbass,
    .mines {
-       max-width: min(80vw, 320px);
+      max-width: min(80vw, 320px);
    }
 
    .aryel-card {
-       padding: 58px 18px 24px;
+      padding: 58px 18px 24px;
    }
 
    .aryel-gallery {
-       grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
    }
 
    .aryel-audio-panel {
-       flex-direction: column;
-       align-items: stretch;
-       text-align: center;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
    }
 
    .aryel-play {
-       width: 100%;
-       min-width: 0;
+      width: 100%;
+      min-width: 0;
    }
 
    #voltar-mines {
-       bottom: 12px;
-       left: 12px;
+      bottom: 12px;
+      left: 12px;
    }
 }
 
 @media (max-width: 350px) {
    .game-frame iframe {
-       height: 880px;
+      height: 880px;
    }
 }

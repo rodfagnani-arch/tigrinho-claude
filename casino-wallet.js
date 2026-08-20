@@ -3,6 +3,8 @@
 
   const STORAGE_KEY = "saldoCassino";
   const DEFAULT_BALANCE = 1000;
+  const VERSION_KEY = "saldoCassinoVersion";
+  const STORAGE_VERSION = "2";
   const CHANGE_EVENT = "casino:balance-changed";
 
   function normalize(value) {
@@ -13,6 +15,12 @@
   }
 
   function getBalance() {
+    if (localStorage.getItem(VERSION_KEY) !== STORAGE_VERSION) {
+      localStorage.setItem(VERSION_KEY, STORAGE_VERSION);
+      localStorage.setItem(STORAGE_KEY, String(DEFAULT_BALANCE));
+      return DEFAULT_BALANCE;
+    }
+
     const storedBalance = normalize(localStorage.getItem(STORAGE_KEY));
 
     if (storedBalance !== null) return storedBalance;
@@ -47,6 +55,11 @@
     return setBalance(getBalance() + value);
   }
 
+  function resetBalance() {
+    localStorage.setItem(VERSION_KEY, STORAGE_VERSION);
+    return setBalance(DEFAULT_BALANCE);
+  }
+
   function subscribe(callback) {
     const onLocalChange = event => callback(event.detail.balance);
     const onStorageChange = event => {
@@ -67,6 +80,7 @@
     setBalance,
     debit,
     credit,
+    resetBalance,
     subscribe
   });
 })(window);
