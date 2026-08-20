@@ -1,0 +1,18 @@
+project_id = "tigrinho-claude"
+
+# A verificação do usuário é feita dentro de cada função com auth.getUser().
+# Isso permite as novas chaves sb_publishable_, que não são JWTs legados.
+[functions.slot-spin]
+verify_jwt = false
+
+[functions.mines-start]
+verify_jwt = false
+
+[functions.mines-reveal]
+verify_jwt = false
+
+[functions.mines-cashout]
+verify_jwt = false
+
+[functions.mines-state]
+verify_jwt = false

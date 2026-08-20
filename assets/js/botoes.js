@@ -45,7 +45,16 @@ function mostrarMenuCassino() {
     if (minesArea) minesArea.style.display = "none";
 }
 
+function carregarJogo(idDoIframe) {
+    const iframe = document.getElementById(idDoIframe);
+    if (!iframe || iframe.getAttribute("src")) return;
+
+    const endereco = iframe.dataset.src;
+    if (endereco) iframe.setAttribute("src", endereco);
+}
+
 function abrirRoleta() {
+    carregarJogo("jogo-slot");
     document.getElementById("cassinoIntro").style.display = "none";
     document.getElementById("menuCassino").style.display = "none";
     document.getElementById("mines-area").style.display = "none";
@@ -90,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const voltarMines = document.getElementById("voltar-mines");
 
     btnMines?.addEventListener("click", () => {
+        carregarJogo("jogo-mines");
         intro.style.display = "none";
         menuCassino.style.display = "none";
         minesArea.style.display = "block";
@@ -187,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 botaoAudio.innerHTML = '<span aria-hidden="true">Ⅱ</span> Pausar áudio';
                 statusAudio.textContent = "Reproduzindo agora";
             } catch {
-                statusAudio.textContent = "Adicione o arquivo audio/aryel.mp3";
+                statusAudio.textContent = "Não foi possível reproduzir assets/audio/alovivi.mp3";
             }
         } else {
             audio.pause();

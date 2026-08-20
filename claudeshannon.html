@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SITE CLAUDE SHANNON</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="auth-locked">
@@ -42,18 +42,13 @@
 
             <div class="auth-field">
                 <label for="authPassword">Senha</label>
-                <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="Mínimo de 6 caracteres">
+                <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo de 8 caracteres">
             </div>
 
             <div class="auth-field register-only" hidden>
                 <label for="authPasswordConfirm">Confirmar senha</label>
-                <input id="authPasswordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" minlength="6" placeholder="Digite a senha novamente">
+                <input id="authPasswordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="Digite a senha novamente">
             </div>
-
-            <label class="auth-remember">
-                <input id="authRemember" type="checkbox">
-                <span>Manter conectado neste navegador</span>
-            </label>
 
             <button class="auth-submit" id="authSubmit" type="submit">
                 <span>Acessar sistema</span>
@@ -62,7 +57,7 @@
             <p class="auth-feedback" id="authFeedback" role="status" aria-live="polite"></p>
         </form>
 
-        <p class="auth-demo-note">Modo demonstrativo local — nenhuma senha é armazenada.</p>
+        <p class="auth-demo-note">Autenticação e sessão protegidas pelo Supabase.</p>
     </div>
 </div>
 
@@ -249,13 +244,14 @@
 
     <div id="mines-area" style="display:none;">
         <button id="voltar-mines">⬅ Voltar</button>
-        <iframe id="jogo-mines" src="mines/mine.html" title="Jogo Mines"></iframe>
+        <iframe id="jogo-mines" data-src="mines/mine.html" title="Jogo Mines"></iframe>
     </div>
 
     <div id="roletaArea" style="display:none;">
         <div class="game-frame slot-only-frame">
             <iframe
-                src="slot/slot.html"
+                id="jogo-slot"
+                data-src="slot/slot.html"
                 title="Jogo Big Bass Splash"
                 scrolling="no"
             ></iframe>
@@ -267,11 +263,13 @@
 
 </div>
 
-<script src="auth.js" defer></script>
-<script src="casino-wallet.js" defer></script>
-<script src="botoes.js" defer></script>
-<script type="text/javascript" src="particles/particles.min.js"></script>
-<script type="text/javascript" src="particles/custom.js"></script>
+<script src="assets/js/vendor/particles.min.js"></script>
+<script src="assets/js/particles-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="assets/js/supabase-client.js" defer></script>
+<script src="assets/js/auth.js" defer></script>
+<script src="assets/js/casino-wallet.js" defer></script>
+<script src="assets/js/botoes.js" defer></script>
 
 </body>
 </html>

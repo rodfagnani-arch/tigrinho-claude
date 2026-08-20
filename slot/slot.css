@@ -510,6 +510,14 @@ button {
   box-shadow: 0 1px 0 #041b11;
 }
 
+.bet-btn:disabled {
+  opacity: 0.48;
+  cursor: wait;
+  filter: grayscale(0.45);
+  transform: none;
+  box-shadow: 0 2px 0 #041b11;
+}
+
 .bet-btn:focus-visible,
 .spin-btn:focus-visible {
   outline: 3px solid rgba(54, 214, 255, 0.82);
