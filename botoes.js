@@ -22,6 +22,7 @@ function trocarAba() {
 
 function trocarAbaCassino() {
     mostrarAba("cassino");
+    mostrarMenuCassino();
 }
 
 function irClaude() {
@@ -32,16 +33,28 @@ function abrirAryel() {
     mostrarAba("aryel");
 }
 
-// abrir jogo
-function abrirRoleta() {
-  document.getElementById("menuCassino").style.display = "none";
-  document.getElementById("roletaArea").style.display = "block";
+function mostrarMenuCassino() {
+    const intro = document.getElementById("cassinoIntro");
+    const menuCassino = document.getElementById("menuCassino");
+    const roletaArea = document.getElementById("roletaArea");
+    const minesArea = document.getElementById("mines-area");
+
+    if (intro) intro.style.display = "block";
+    if (menuCassino) menuCassino.style.display = "flex";
+    if (roletaArea) roletaArea.style.display = "none";
+    if (minesArea) minesArea.style.display = "none";
 }
 
-// voltar pro menu
+function abrirRoleta() {
+    document.getElementById("cassinoIntro").style.display = "none";
+    document.getElementById("menuCassino").style.display = "none";
+    document.getElementById("mines-area").style.display = "none";
+    document.getElementById("roletaArea").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function voltarCassino() {
-  document.getElementById("menuCassino").style.display = "block";
-  document.getElementById("roletaArea").style.display = "none";
+    mostrarMenuCassino();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -69,6 +82,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const btnMines = document.getElementById("btn-mines");
+    const intro = document.getElementById("cassinoIntro");
+    const menuCassino = document.getElementById("menuCassino");
+    const minesArea = document.getElementById("mines-area");
+    const voltarMines = document.getElementById("voltar-mines");
+
+    btnMines?.addEventListener("click", () => {
+        intro.style.display = "none";
+        menuCassino.style.display = "none";
+        minesArea.style.display = "block";
+    });
+
+    voltarMines?.addEventListener("click", mostrarMenuCassino);
+});
+
 /* 🔥 CONTROLE */
 let mostrandoVasco = true;
 
@@ -89,29 +118,6 @@ function trocarImagem() {
 
     mostrandoVasco = !mostrandoVasco;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const btnMines = document.getElementById("btn-mines");
-
-    const menuCassino = document.getElementById("menuCassino");
-    const minesArea = document.getElementById("mines-area");
-
-    const voltarMines = document.getElementById("voltar-mines");
-
-    // abrir mines
-    btnMines.addEventListener("click", () => {
-        menuCassino.style.display = "none";
-        minesArea.style.display = "block";
-    });
-
-    // voltar
-    voltarMines.addEventListener("click", () => {
-        minesArea.style.display = "none";
-        menuCassino.style.display = "block";
-    });
-
-});
 
 // Área secreta Aryel: use o campo de código ou clique 5 vezes no título principal.
 document.addEventListener("DOMContentLoaded", () => {

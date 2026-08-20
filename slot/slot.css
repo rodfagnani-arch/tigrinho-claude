@@ -155,7 +155,7 @@ button {
 /* Gabinete externo */
 .machine-body {
   position: relative;
-  width: min(100%, 420px);
+  width: min(100%, 500px);
   padding: 9px;
   border: 1px solid rgba(255, 231, 152, 0.48);
   border-radius: 28px;
@@ -296,7 +296,7 @@ button {
   position: relative;
   flex: 1;
   min-width: 0;
-  height: 200px;
+  height: 290px;
   overflow: hidden;
   border: 1px solid rgba(105, 210, 150, 0.24);
   border-radius: 9px;
@@ -389,15 +389,24 @@ button {
 }
 
 .symbol {
-  height: 66px;
+  height: 58px;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-size: clamp(2.15rem, 10vw, 2.7rem);
+  font-size: clamp(1.55rem, 7.5vw, 2.45rem);
   user-select: none;
   filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.55));
   transform: translateZ(0);
+}
+
+.symbol.connected {
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(255, 216, 106, 0.28), rgba(255, 216, 106, 0.04) 62%, transparent 72%);
+  filter: drop-shadow(0 0 8px rgba(255, 216, 106, 0.9));
+  animation: connected-symbol 0.62s ease-in-out infinite alternate;
 }
 
 /* Painel de informações */
@@ -635,6 +644,19 @@ button {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes connected-symbol {
+  from {
+    background-color: rgba(255, 216, 106, 0.03);
+    filter: drop-shadow(0 0 5px rgba(255, 216, 106, 0.62));
+    transform: scale(1);
+  }
+  to {
+    background-color: rgba(255, 216, 106, 0.14);
+    filter: drop-shadow(0 0 12px rgba(255, 216, 106, 1));
+    transform: scale(1.08);
+  }
+}
+
 @keyframes jackpot-pulse {
   from { color: var(--gold); transform: scale(1); }
   to { color: var(--danger); transform: scale(1.055); }
@@ -711,8 +733,7 @@ button {
 @media (max-width: 350px) {
   .machine-inner { padding: 10px; }
   .reels-container { gap: 4px; padding: 6px; }
-  .balance-row { grid-template-columns: 1fr; }
-  .balance-box { min-height: 48px; }
+  .balance-box { min-height: 55px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -159,54 +159,47 @@
 <!-- ABA CASSINO -->
 <div id="cassino" style="display: none;">
 
-<h2>BET 777 Shannon 🎰</h2>
-
-<p>Bem-vindo ao cassino do Claude Shannon.</p>
-
-<!-- MENU DO JOGO -->
-<div id="menuCassino">
-    <img class="bigbass" src="assets/img/bigbass.jpg" width="500" onclick="abrirRoleta()" style="cursor:pointer;">
-    <img class="mines" id="btn-mines" src="assets/img/mines.png" width="500" style="cursor:pointer;">
-
-</div>
-
-<div id="mines-area" style="display:none;">
-
-    <button id="voltar-mines">⬅ Voltar</button>
-
-    <iframe id="jogo-mines" src="mines/mine.html"></iframe>
-
-</div>
-
-<!-- ÁREA DO JOGO -->
-<div id="roletaArea" style="display:none;">
-
-    <div class="game-wrapper">
-
-        <div class="game-card">
-
-            <div class="game-frame">
-                <iframe
-                    src="slot/slot.html"
-                    title="Jogo Big Bass Splash"
-                    scrolling="no"
-                ></iframe>
-            </div>
-
-            <div class="game-footer">
-                <div>
-                    <div class="game-title">Big Bass Splash</div>
-                    <div class="game-provider">Cassino Shannon</div>
-                </div>
-
-                <button id="voltarcass" onclick="voltarCassino()">⬅ Voltar</button>
-            </div>
-
-        </div>
-
+    <div id="cassinoIntro">
+        <h2>BET 777 Shannon 🎰</h2>
+        <p>Bem-vindo ao cassino do Claude Shannon.</p>
     </div>
 
-</div>
+    <div id="menuCassino">
+        <img
+            class="bigbass"
+            src="assets/img/bigbass.jpg"
+            width="500"
+            alt="Abrir Big Bass Splash"
+            onclick="abrirRoleta()"
+            style="cursor:pointer;"
+        >
+        <img
+            class="mines"
+            id="btn-mines"
+            src="assets/img/mines.png"
+            width="500"
+            alt="Abrir Mines"
+            style="cursor:pointer;"
+        >
+    </div>
+
+    <div id="mines-area" style="display:none;">
+        <button id="voltar-mines">⬅ Voltar</button>
+        <iframe id="jogo-mines" src="mines/mine.html" title="Jogo Mines"></iframe>
+    </div>
+
+    <div id="roletaArea" style="display:none;">
+        <div class="game-frame slot-only-frame">
+            <iframe
+                src="slot/slot.html"
+                title="Jogo Big Bass Splash"
+                scrolling="no"
+            ></iframe>
+        </div>
+        <button id="voltarcass" class="slot-back" type="button" onclick="voltarCassino()">
+            ⬅ Voltar aos jogos
+        </button>
+    </div>
 
 </div>
 

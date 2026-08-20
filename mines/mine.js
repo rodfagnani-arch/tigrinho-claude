@@ -3,7 +3,7 @@ const GRID_SIZE = 25;
 const TOTAL_CELLS = 25;
 
 let state = {
-  balance: 1000,
+  balance: CasinoWallet.getBalance(),
   bet: 10,
   mines: 3,
   minePositions: [],
@@ -52,11 +52,13 @@ function initGrid() {
 // ===================== START GAME =====================
 function startGame() {
   const bet = parseFloat(document.getElementById('betInput').value);
+  state.balance = CasinoWallet.getBalance();
   if (isNaN(bet) || bet <= 0) { alert('Aposta inválida!'); return; }
   if (bet > state.balance) { alert('Saldo insuficiente!'); return; }
+  if (!CasinoWallet.debit(bet)) { alert('Saldo insuficiente!'); return; }
 
   state.bet = bet;
-  state.balance -= bet;
+  state.balance = CasinoWallet.getBalance();
   state.gameActive = true;
   state.safeCellsRevealed = 0;
   state.revealedCells = [];
@@ -142,7 +144,7 @@ function cashout() {
   if (!state.gameActive) return;
   const mult = calcMultiplier(state.safeCellsRevealed, state.mines);
   const winAmount = parseFloat((state.bet * mult).toFixed(2));
-  state.balance += winAmount;
+  state.balance = CasinoWallet.credit(winAmount);
   endGame(true, winAmount, mult);
 }
 
@@ -251,6 +253,7 @@ function renderHistory() {
 
 // ===================== BALANCE =====================
 function updateBalance() {
+  state.balance = CasinoWallet.getBalance();
   document.getElementById('balance').textContent = formatBRL(state.balance);
 }
 
@@ -304,6 +307,13 @@ function formatBRL(val) {
 }
 
 // ===================== INIT =====================
+CasinoWallet.subscribe(newBalance => {
+  state.balance = newBalance;
+  updateBalance();
+});
+
+window.addEventListener('focus', updateBalance);
+
 initGrid();
 updateBalance();
 renderHistory();
