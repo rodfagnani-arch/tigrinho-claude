@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SITE CLAUDE SHANNON</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="auth-locked">
+
+<!-- ACESSO AO SITE -->
+<div class="auth-screen" id="authScreen" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-card">
+        <div class="auth-brand" aria-hidden="true">
+            <span>CS</span>
+        </div>
+
+        <p class="auth-eyebrow">Sistema Shannon</p>
+        <h1 id="authTitle">Acesso reservado</h1>
+        <p class="auth-description">Entre para acessar o conteúdo e os jogos.</p>
+
+        <div class="auth-tabs" role="tablist" aria-label="Tipo de acesso">
+            <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth-mode="login">
+                Entrar
+            </button>
+            <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth-mode="register">
+                Criar conta
+            </button>
+        </div>
+
+        <form class="auth-form" id="authForm" novalidate>
+            <div class="auth-field register-only" hidden>
+                <label for="authName">Nome</label>
+                <input id="authName" name="name" type="text" autocomplete="name" minlength="2" placeholder="Seu nome">
+            </div>
+
+            <div class="auth-field">
+                <label for="authEmail">E-mail</label>
+                <input id="authEmail" name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+            </div>
+
+            <div class="auth-field">
+                <label for="authPassword">Senha</label>
+                <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="Mínimo de 6 caracteres">
+            </div>
+
+            <div class="auth-field register-only" hidden>
+                <label for="authPasswordConfirm">Confirmar senha</label>
+                <input id="authPasswordConfirm" name="passwordConfirm" type="password" autocomplete="new-password" minlength="6" placeholder="Digite a senha novamente">
+            </div>
+
+            <label class="auth-remember">
+                <input id="authRemember" type="checkbox">
+                <span>Manter conectado neste navegador</span>
+            </label>
+
+            <button class="auth-submit" id="authSubmit" type="submit">
+                <span>Acessar sistema</span>
+            </button>
+
+            <p class="auth-feedback" id="authFeedback" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="auth-demo-note">Modo demonstrativo local — nenhuma senha é armazenada.</p>
+    </div>
+</div>
 
 <!-- MENU LATERAL-->
 <div class="menu" id="menu">
@@ -13,9 +72,14 @@
     <span>Menu</span>
 
     <div class="conteudo">
+        <div class="menu-user">
+            <small>Conectado como</small>
+            <strong id="menuUserName">Visitante</strong>
+        </div>
         <p onclick="irClaude()">Claude</p>
         <p onclick="trocarAba()">Vasco</p>
         <p onclick="trocarAbaCassino()">Cassino</p>
+        <button class="menu-logout" id="logoutButton" type="button">Sair</button>
     </div>
 
 </div>
@@ -203,6 +267,7 @@
 
 </div>
 
+<script src="auth.js" defer></script>
 <script src="casino-wallet.js" defer></script>
 <script src="botoes.js" defer></script>
 <script type="text/javascript" src="particles/particles.min.js"></script>
